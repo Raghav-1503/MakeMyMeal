@@ -1,0 +1,14 @@
+<mat-card class="demo-inline-calendar-card">
+    <mat-calendar [(selected)]="selectedDate" [dateFilter]="preventSelection" (selectedChange)="updateSelectedTime()">
+      <!-- <ng-template mat-calendar-cell-class
+                   let-date="date"
+                   [ngClass]="{
+                     'booked': isBooked(date),
+                     'canceled': isCanceled(date),
+                     'custom-weekend': isWeekend(date)
+                   }">
+      </ng-template> -->
+    </mat-calendar>
+  </mat-card>
+  
+  <p>Selected date and time: {{ selectedDate | date: 'mediumDate'}} {{ selectedTime }} </p>
