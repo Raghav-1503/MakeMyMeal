@@ -1,0 +1,21 @@
+<!-- <div class="main-container">
+<div class="coupon-container">
+    <h2>Generate Your Coupon</h2>
+    <button (click)="generateCoupon()">Generate Coupon</button>
+    <div *ngIf="couponCode">
+        <p>Your Coupon Code: {{ couponCode }}</p>
+    </div>
+</div>
+</div> -->
+
+<div class="main-container">
+  <div class="coupon-container">
+    <h2>Generate Your Coupon</h2>
+    <button (click)="generateCoupon()">Generate Coupon</button>
+    <div *ngIf="couponCode">
+      <p>Your Coupon Code: {{ couponCode }}</p>
+      <qr-code value="Yo world!" size="300" ></qr-code>
+
+    </div>
+  </div>
+</div>

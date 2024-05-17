@@ -11,6 +11,11 @@ import { MatInputModule } from '@angular/material/input';
 import { AboutComponent } from './app/about/about.component';
 import { TermsComponent } from './app/terms/terms.component';
 import { PrivacyPolicyComponent } from './app/privacy-policy/privacy-policy.component';
+import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
+import { MatDialogModule } from '@angular/material/dialog'; 
+import { BookService } from 'src/app/services/book.service'; 
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -18,7 +23,7 @@ import { PrivacyPolicyComponent } from './app/privacy-policy/privacy-policy.comp
     AppComponent,
     AboutComponent,
     TermsComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
     
   ],
   imports: [
@@ -29,8 +34,12 @@ import { PrivacyPolicyComponent } from './app/privacy-policy/privacy-policy.comp
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    HttpClientModule,
+
   ],
-  providers: [],
+  providers: [BookService],
   bootstrap: [AppComponent]
 })
 

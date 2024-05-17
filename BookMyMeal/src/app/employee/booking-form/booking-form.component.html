@@ -1,0 +1,50 @@
+<form [formGroup]="bookingForm">
+  <div class="modal-body">
+    <div class="modal-body">
+      <div class="form-group custom-radio">
+        <label>Select Category</label>
+        <div class="d-flex align-content-center justify-content-start">
+          <div class="radio-block">
+            <input type="radio" id="Catagory1" value="Lunch" formControlName="category" />
+            <label for="Catagory1" class="mr-0">Lunch</label>
+          </div>
+          <div class="radio-block">
+            <input type="radio" id="Catagory2" value="Dinner" formControlName="category" />
+            <label for="Catagory2" class="mr-0">Dinner</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label>Starting Date</label>
+      <div class="input-date">
+        <input type="date" class="form-control border-right-0" placeholder="Select Date" id="SDate"
+          formControlName="startingDate" />
+        <div class="input-group-append bg-transparent">
+          <!-- <span class="input-group-text bg-transparent" id="basic-addon2"><i class="icon-calendar"></i></span> -->
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Ending Date</label>
+      <div class="input-date">
+        <input type="date" class="form-control border-right-0" placeholder="Select Date" id="demoDate"
+          formControlName="endingDate" />
+        <div class="input-group-append bg-transparent">
+          <!-- <span class="input-group-text bg-transparent" id="basic-addon2"><i class="icon-calendar"></i></span> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+      <label>EmployeeId</label>
+      <input type="number" name="form-control" id="Emp_id" formControlName="employee_id" />
+    </div> -->
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="onCancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="booked()">Book</button>
+  </div>
+</form>

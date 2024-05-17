@@ -3776,7 +3776,7 @@ textarea.form-control-lg {
 }
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #ebeff3;
+  color: #495057;
   background-color: #FFF;
   border-color: #dee2e6 #dee2e6 #FFF;
 }
@@ -12483,7 +12483,7 @@ img {
 .container-head .container-left h3.container-title, .container-head .container-left .container-title.h3 {
   font-size: 32px;
   font-weight: 600;
-  color: #000;
+  color: #fff;
   margin-bottom: 0;
 }
 @media (max-width: 575.98px) {
