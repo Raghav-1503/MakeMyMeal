@@ -1,0 +1,18 @@
+<div class="meal-of-the-day">
+    <h2>Meal of the day</h2>
+    <div class="meals">
+      <div class="meal-section">
+        <h3>Lunch</h3>
+        <ul>
+          <li *ngFor="let meal of lunchMeals">{{ meal }}</li>
+        </ul>
+      </div>
+      <div class="meal-section">
+        <h3>Dinner</h3>
+        <ul>
+          <li *ngFor="let meal of dinnerMeals">{{ meal }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  

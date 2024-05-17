@@ -1,0 +1,56 @@
+/* .coupon-container{
+    width: 90%;
+    height: 100%;
+    margin-top: 150px;
+    margin-left: 250px;
+} */
+
+.main-container{
+    width: 100%;
+    height: 95%
+}
+
+.coupon-container {
+    max-width: 400px;
+    margin: 150px auto;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .coupon-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .coupon-container button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .coupon-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .coupon-container p {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .coupon-container p::before {
+    content: "🎉 ";
+  }
+  

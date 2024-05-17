@@ -1,0 +1,48 @@
+/* General spacing between rows */
+.row {
+    gap: 30px; /* Reduced the gap for better visual alignment */
+}
+
+/* Rounded corners for cards */
+.card {
+    border-radius: 15px; /* Increased border radius for a smoother look */
+    overflow: hidden; /* Ensure images within cards stay within the rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* On hover, slightly lift and change the shadow color */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Card title styling */
+.card-title {
+    font-size: 1.5rem; /* Increased font size for better readability */
+    font-weight: bold;
+    color: #333;
+}
+
+/* Card text styling */
+.card-text {
+    color: #666;
+    font-size: 1rem; /* Adjusted font size for better consistency */
+}
+
+/* Image styling */
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Set a fixed height for better alignment */
+    object-fit: cover; /* Ensure images maintain aspect ratio and cover the entire space */
+}
+
+/* Main image styling */
+.img.main {
+    height: 400px; /* Adjusted height for better proportion with other elements */
+}
+
+/* Container margin */
+.container {
+    margin-top: 50px; /* Reduced top margin for better alignment */
+}
