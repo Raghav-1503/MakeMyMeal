@@ -44,7 +44,7 @@
 
 <!-- <p>Selected date and time: {{ selectedDate | date: 'mediumDate'}} {{ selectedTime }} </p> -->
 
-<div class="quick-button-parent">
+<!-- <div class="quick-button-parent">
   <div class="quick-button">
     <div class="container-fluid">
       <div class="container pt-30 mb-30">
@@ -52,6 +52,24 @@
           <div class="container-right">
             <a aria-label="Add Booking" class="btn btn-primary" data-toggle="modal"
                (click)="quickMealComponent.openPopup($event)" >Quick Meal</a>
+            <app-quick-meal #quickMealComponent></app-quick-meal>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="quick-button-parent">
+  <div class="quick-button">
+    <div class="container-fluid">
+      <div class="container pt-30 mb-30">
+        <div class="container-head">
+          <div class="container-right">
+            <a aria-label="Add Booking" class="btn btn-primary" data-toggle="modal"
+               (click)="quickMealComponent.openPopup($event)"
+               [class.disabled]="isButtonDisabled"
+               [attr.disabled]="isButtonDisabled ? true : null">Quick Meal</a>
             <app-quick-meal #quickMealComponent></app-quick-meal>
           </div>
         </div>
