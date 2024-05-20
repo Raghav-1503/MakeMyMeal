@@ -1,0 +1,23 @@
+<div mat-dialog-content>
+    <h3>Notifications</h3>
+    <table class="notification-table">
+      <thead>
+        <tr>
+          <th>Sr No.</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let notification of paginatedNotifications; let i = index">
+          <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+          <td>{{ notification.date | date: 'shortDate' }}</td>
+          <td>{{ notification.date | date: 'shortTime' }}</td>
+          <td>{{ notification.message }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator [length]="notifications.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
+  </div>
+  

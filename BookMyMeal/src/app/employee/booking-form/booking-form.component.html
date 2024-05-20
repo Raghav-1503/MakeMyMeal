@@ -1,20 +1,4 @@
-<form [formGroup]="bookingForm">
-  <div class="modal-body">
-    <div class="modal-body">
-      <div class="form-group custom-radio">
-        <label>Select Category</label>
-        <div class="d-flex align-content-center justify-content-start">
-          <div class="radio-block">
-            <input type="radio" id="Catagory1" value="Lunch" formControlName="category" />
-            <label for="Catagory1" class="mr-0">Lunch</label>
-          </div>
-          <div class="radio-block">
-            <input type="radio" id="Catagory2" value="Dinner" formControlName="category" />
-            <label for="Catagory2" class="mr-0">Dinner</label>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
 
     <!-- <div class="form-group">
@@ -68,6 +52,25 @@
         />
       </div>
     </div> -->
+
+    <form [formGroup]="bookingForm">
+      <div class="modal-body">
+        <div class="modal-body">
+          <div class="form-group custom-radio">
+            <label>Select Category</label>
+            <div class="d-flex align-content-center justify-content-start">
+              <div class="radio-block">
+                <input type="radio" id="Catagory1" value="Lunch" formControlName="category" />
+                <label for="Catagory1" class="mr-0">Lunch</label>
+              </div>
+              <div class="radio-block">
+                <input type="radio" id="Catagory2" value="Dinner" formControlName="category" />
+                <label for="Catagory2" class="mr-0">Dinner</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
     <div class="form-group">
       <label>Starting Date</label>
       <div class="input-date">
@@ -114,13 +117,86 @@
       </div>
     </div>
 
-    <!-- <div class="form-group">
-      <label>EmployeeId</label>
-      <input type="number" name="form-control" id="Emp_id" formControlName="employee_id" />
-    </div> -->
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-primary" (click)="onCancel()">Cancel</button>
     <button type="button" class="btn btn-primary" (click)="booked()">Book</button>
   </div>
 </form>
+
+<!-- 
+<form [formGroup]="bookingForm" class="booking-form">
+  <h3>Book Your Meal</h3>
+  <div class="modal-body">
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Category</mat-label>
+        <mat-radio-group formControlName="category" class="d-flex">
+          <mat-radio-button value="Lunch">Lunch</mat-radio-button>
+          <mat-radio-button value="Dinner">Dinner</mat-radio-button>
+        </mat-radio-group>
+        <mat-error *ngIf="bookingForm.get('category')?.hasError('required')">
+          Category is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Starting Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="startPicker"
+          formControlName="startingDate"
+          [min]="minDate"
+          [max]="maxDate"
+          (dateChange)="validateDateRange('startingDate')"
+        />
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+        <mat-error *ngIf="bookingForm.get('startingDate')?.hasError('required')">
+          Starting Date is required
+        </mat-error>
+        <mat-error *ngIf="bookingForm.get('startingDate')?.hasError('invalidRange')">
+          Date must be within the next 3 months
+        </mat-error>
+        <mat-error *ngIf="bookingForm.get('startingDate')?.hasError('weekend')">
+          Weekends are not allowed
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Ending Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="endPicker"
+          formControlName="endingDate"
+          [min]="minDate"
+          [max]="maxDate"
+          (dateChange)="validateDateRange('endingDate')"
+        />
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+        <mat-error *ngIf="bookingForm.get('endingDate')?.hasError('required')">
+          Ending Date is required
+        </mat-error>
+        <mat-error *ngIf="bookingForm.get('endingDate')?.hasError('invalidRange')">
+          Date must be within the next 3 months
+        </mat-error>
+        <mat-error *ngIf="bookingForm.get('endingDate')?.hasError('weekend')">
+          Weekends are not allowed
+        </mat-error>
+        <mat-error *ngIf="bookingForm.get('endingDate')?.hasError('endDateBeforeStartDate')">
+          Ending Date must be after Starting Date
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="booked()">Book</button>
+  </div>
+</form> -->

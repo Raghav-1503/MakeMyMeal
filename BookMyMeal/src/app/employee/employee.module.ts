@@ -19,7 +19,15 @@ import { BookingFormComponent } from './booking-form/booking-form.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { QrCodeModule } from 'ng-qrcode';
 import { ViewBookingComponent } from './view-booking/view-booking.component';
-
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { NotificationComponent } from './notification/notification.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -31,6 +39,9 @@ import { ViewBookingComponent } from './view-booking/view-booking.component';
     BookingFormComponent,
     CouponComponent,
     ViewBookingComponent,
+    ChangePasswordComponent,
+    NotificationComponent,
+
   ],
   imports: [
     CommonModule,
@@ -42,7 +53,14 @@ import { ViewBookingComponent } from './view-booking/view-booking.component';
     FullCalendarModule,
     ReactiveFormsModule,
     FormsModule,
-    QrCodeModule
+    MatButtonModule,
+    MatInputModule,
+    QrCodeModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSelectModule
   ],
   providers: [BookService]
 })

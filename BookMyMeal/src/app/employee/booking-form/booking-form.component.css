@@ -18,3 +18,36 @@ form{
 h3{
    text-align: center;
 }
+.modal-body {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-radio-group {
+  display: flex;
+  gap: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+button[mat-button] {
+  margin-right: 10px;
+}
+

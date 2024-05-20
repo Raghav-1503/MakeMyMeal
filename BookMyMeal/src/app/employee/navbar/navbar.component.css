@@ -52,6 +52,8 @@
   display: inline-block;
 }
 
+
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -72,12 +74,76 @@
 
 .dropdown-content a:hover {
   background-color: #f1f1f1;
+  cursor: pointer;
 }
 
 .show {
   display: block;
 }
 
+a:hover{
+  cursor: pointer;
+ }
 
+/* Navbar styles */
+.navbar .icon-menu {
+  font-size: 24px;
+  cursor: pointer;
+}
 
+/* Side menu styles */
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
 
+.side-menu a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.side-menu a:hover {
+  color: #f1f1f1;
+}
+
+.side-menu .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.side-menu.show {
+  width: 250px;
+}
+
+/* Add responsiveness for smaller screens */
+@media screen and (max-height: 450px) {
+.side-menu {padding-top: 15px;}
+.side-menu a {font-size: 18px;}
+}
+
+/* Menu icon styles */
+.menu-icon {
+  width: 24px; /* Adjust the width as needed */
+  height: 24px; /* Adjust the height as needed */
+  display: inline-block;
+  background-image: url('src/assets/images/bars-solid1.svg'); /* Replace with the actual path to your SVG file */
+  background-size: cover; /* Ensure the SVG scales properly */
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer; /* Optional: change the cursor to pointer to indicate it's clickable */
+}

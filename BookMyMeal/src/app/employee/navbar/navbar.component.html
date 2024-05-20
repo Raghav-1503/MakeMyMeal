@@ -1,5 +1,4 @@
-
-<nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top" *ngIf="!hideNavbar">
     <div class="container-fluid">
         <div class="container head">
             <a href="#" class="navbar-brand">
@@ -16,7 +15,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" routerLink="calender">Calender</a>
                     </li>
@@ -31,22 +30,39 @@
 
                 <div class="h-100 d-lg-inline-flex align-items-center">
                     <ul class="app-nav">
-                        
-                        <li class="dropdown"><a class="app-nav__item notification-num" href="#" data-toggle="dropdown"
+
+                        <!-- <li class="dropdown"><a class="app-nav__item notification-num" href="#" data-toggle="dropdown"
                                 aria-label="Show notifications"><i class="icon-bell"></i>
                                 <span class="num">5</span>
-                            </a></li>
-                        
-                        <li class="dropdown"><a class="app-nav__item dropdown-toggle" href="#" data-toggle="dropdown"
-                                aria-label="Open Profile Menu" (click)="toggleDropdown()">Employee</a>
-                                <div class="dropdown-box">
+                            </a></li> -->
+
+                        <li class="dropdown">
+                            <a class="app-nav__item notification-num" (click)="openNotifications()"
+                                aria-label="Show notifications">
+                                <i class="icon-bell"></i>
+                                <span class="num">{{ notificationCount }}</span>
+                            </a>
+                        </li>
+
+
+                        <li class="dropdown"><a class="app-nav__item dropdown-toggle" id="username"
+                                data-toggle="dropdown" aria-label="Open Profile Menu"
+                                (click)="toggleDropdown()">Employee</a>
+                            <div class="dropdown-box">
                                 <div class="dropdown-content" [ngClass]="{'show': dropdownOpen}">
-                                    <a href="#" (click)="changePassword()">Change Password</a>
+                                    <a routerLink="changePassword" (click)="changePassword()">Change Password</a>
                                     <a href="#" (click)="logout()">Logout</a>
                                 </div>
                             </div>
                         </li>
-                          
+
+                        <li class="dropdown">
+                            <a class="app-nav__item " (click)="toggleSideMenu()" aria-label="Open Side Menu">
+                                <i class="app-nav__item menu-icon"></i>
+                                <i class="fa-solid fa-bars fa-beat-fade"></i>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -54,19 +70,27 @@
     </div>
 </nav>
 
+<div class="side-menu" [ngClass]="{'show': sideMenuOpen}">
+    <a class="closebtn" (click)="toggleSideMenu()">&times;</a>
+    <a routerLink="terms">Terms and Conditions</a>
+    <a routerLink="about">About Us</a>
+    <a routerLink="privacy">Privacy Policy</a>
+</div>
+
 <router-outlet></router-outlet>
 
-<div class="footer">
+<div class="footer" *ngIf="!hideFooter">
     <div class="container">
         <div class="footer-block">
             <p>Copyright © 2022 Rishabh Software. All Rights Reserved.</p>
             <div class="social">
                 <a href="https://www.facebook.com/rishabhsoft" aria-label="Facebook"><i class="icon-facebook"></i></a>
-                <a href="https://www.instagram.com/rishabhsoft/" aria-label="Instagram"><i class="icon-instagram"></i></a>
-                <a href="https://www.linkedin.com/company/rishabh-software/mycompany/" aria-label="Linkedin"><i class="icon-linkedin"></i></a>
+                <a href="https://www.instagram.com/rishabhsoft/" aria-label="Instagram"><i
+                        class="icon-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/rishabh-software/mycompany/" aria-label="Linkedin"><i
+                        class="icon-linkedin"></i></a>
                 <a href="#" aria-label="Twitter"><i class="icon-twitter"></i></a>
             </div>
         </div>
     </div>
 </div>
-
