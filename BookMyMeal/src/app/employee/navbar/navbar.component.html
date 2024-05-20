@@ -1,4 +1,4 @@
-<!-- Navbar Start -->
+
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
         <div class="container head">
@@ -16,17 +16,12 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Calendar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Booking List</a>
-                    </li> -->
+                    
                     <li class="nav-item">
                         <a class="nav-link" routerLink="calender">Calender</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="">Booking List</a>
+                        <a class="nav-link" routerLink="viewBooking">Booking List</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" routerLink="coupon">Coupon</a>
@@ -36,41 +31,28 @@
 
                 <div class="h-100 d-lg-inline-flex align-items-center">
                     <ul class="app-nav">
-                        <!--Notification Menu-->
+                        
                         <li class="dropdown"><a class="app-nav__item notification-num" href="#" data-toggle="dropdown"
                                 aria-label="Show notifications"><i class="icon-bell"></i>
                                 <span class="num">5</span>
                             </a></li>
-                        <!-- User Menu-->
-                        <li class="dropdow"><a class="app-nav__item dropdown-toggle" href="#" data-toggle="dropdown"
-                                aria-label="Open Profile Menu">Employee</a>
-                            <ul class="dropdown-menu settings-menu dropdown-menu-left">
-                                <li><a class="dropdown-item" href="#" data-toggle="modal"
-                                        data-target="#changepwdModal">Change
-                                        Password</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
+                        
+                        <li class="dropdown"><a class="app-nav__item dropdown-toggle" href="#" data-toggle="dropdown"
+                                aria-label="Open Profile Menu" (click)="toggleDropdown()">Employee</a>
+                                <div class="dropdown-box">
+                                <div class="dropdown-content" [ngClass]="{'show': dropdownOpen}">
+                                    <a href="#" (click)="changePassword()">Change Password</a>
+                                    <a href="#" (click)="logout()">Logout</a>
+                                </div>
+                            </div>
                         </li>
+                          
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </nav>
-
-<!-- Navbar End -->
-<!-- <div class="add-button">
-    <div class="container-fluid">
-        <div class="container pt-30 mb-30">
-            <div class="container-head">
-                <div class="container-right">
-                    <a aria-label="Add Booking" class="btn btn-primary" 
-                    (click)="openDialog()">Add Booking</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 <router-outlet></router-outlet>
 

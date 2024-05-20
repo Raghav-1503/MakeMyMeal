@@ -18,6 +18,7 @@ import { BookService } from 'src/app/services/book.service';
 import { BookingFormComponent } from './booking-form/booking-form.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { QrCodeModule } from 'ng-qrcode';
+import { ViewBookingComponent } from './view-booking/view-booking.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { QrCodeModule } from 'ng-qrcode';
     QuickMealComponent,
     BookingFormComponent,
     CouponComponent,
+    ViewBookingComponent,
   ],
   imports: [
     CommonModule,

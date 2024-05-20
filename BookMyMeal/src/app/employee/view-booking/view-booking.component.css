@@ -1,0 +1,57 @@
+.booking-container {
+  height: 90vh;
+}
+
+.booking-table {
+  margin-top: 90px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  width: 95%;
+  margin-top: -12px;
+  border-collapse: separate; /* Use separate to enable border-radius */
+  border-spacing: 0; /* Ensure there’s no extra spacing */
+  border-radius: 10px; /* Adjust the value as needed */
+  overflow: hidden; /* Ensure the border-radius clips content inside */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd; /* Add border for better visual */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #ff0000;
+}
+
+.pagination-controls {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  margin: 5px;
+}

@@ -17,13 +17,13 @@
     </div>
 
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Starting Date</label>
       <div class="input-date">
         <input type="date" class="form-control border-right-0" placeholder="Select Date" id="SDate"
           formControlName="startingDate" />
         <div class="input-group-append bg-transparent">
-          <!-- <span class="input-group-text bg-transparent" id="basic-addon2"><i class="icon-calendar"></i></span> -->
+          
         </div>
       </div>
     </div>
@@ -33,7 +33,83 @@
         <input type="date" class="form-control border-right-0" placeholder="Select Date" id="demoDate"
           formControlName="endingDate" />
         <div class="input-group-append bg-transparent">
-          <!-- <span class="input-group-text bg-transparent" id="basic-addon2"><i class="icon-calendar"></i></span> -->
+         
+        </div>
+      </div>
+    </div> -->
+<!-- 
+    <div class="form-group">
+      <label>Starting Date</label>
+      <div class="input-date">
+        <input 
+          type="date" 
+          class="form-control border-right-0" 
+          placeholder="Select Date" 
+          id="SDate"
+          formControlName="startingDate"
+          (change)="validateDateRange('startingDate')"
+          [min]="minDate"
+          [max]="maxDate"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Ending Date</label>
+      <div class="input-date">
+        <input 
+          type="date" 
+          class="form-control border-right-0" 
+          placeholder="Select Date" 
+          id="demoDate"
+          formControlName="endingDate"
+          (change)="validateDateRange('endingDate')"
+          [min]="minDate"
+          [max]="maxDate"
+        />
+      </div>
+    </div> -->
+    <div class="form-group">
+      <label>Starting Date</label>
+      <div class="input-date">
+        <input 
+          type="date" 
+          class="form-control border-right-0" 
+          placeholder="Select Date" 
+          id="SDate"
+          formControlName="startingDate"
+          (change)="validateDateRange('startingDate')"
+          [min]="minDate"
+          [max]="maxDate"
+          [class.is-invalid]="bookingForm.get('startingDate')?.invalid && bookingForm.get('startingDate')?.touched"
+        />
+        <div class="invalid-feedback">
+          Weekends are not allowed.
+        </div>
+        <div class="invalid-feedback">
+          Date must be within the next 3 months.
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label>Ending Date</label>
+      <div class="input-date">
+        <input 
+          type="date" 
+          class="form-control border-right-0" 
+          placeholder="Select Date" 
+          id="demoDate"
+          formControlName="endingDate"
+          (change)="validateDateRange('endingDate')"
+          [min]="minDate"
+          [max]="maxDate"
+          [class.is-invalid]="bookingForm.get('endingDate')?.invalid && bookingForm.get('endingDate')?.touched"
+        />
+        <div  class="invalid-feedback">
+          Weekends are not allowed.
+        </div>
+        <div class="invalid-feedback">
+          Date must be within the next 3 months.
         </div>
       </div>
     </div>

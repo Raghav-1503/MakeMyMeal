@@ -14,7 +14,7 @@
     <button (click)="generateCoupon()">Generate Coupon</button>
     <div *ngIf="couponCode">
       <p>Your Coupon Code: {{ couponCode }}</p>
-      <qr-code value="Yo world!" size="300" ></qr-code>
+      <qr-code [value]="couponCode" size="300" errorCorrectionLevel="L" ></qr-code>
 
     </div>
   </div>
