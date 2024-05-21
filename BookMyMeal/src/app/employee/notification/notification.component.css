@@ -1,0 +1,71 @@
+/* Container for dialog content */
+.mat-dialog-content {
+    padding: 20px;
+  }
+  
+  /* Header style */
+  h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3f51b5; /* Primary color */
+  }
+  
+  /* Notification table styles */
+  .notification-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .notification-table th, .notification-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .notification-table th {
+    background-color: #3f51b5; /* Primary color */
+    color: white;
+    font-weight: bold;
+  }
+  
+  .notification-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .notification-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Paginator styles */
+  .mat-paginator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .mat-paginator .mat-paginator-range-label,
+  .mat-paginator .mat-paginator-page-size {
+    font-size: 14px;
+  }
+  
+  .mat-paginator .mat-icon-button {
+    color: #3f51b5; /* Primary color */
+  }
+  
+  /* Adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .mat-dialog-content {
+      padding: 10px;
+    }
+  
+    .notification-table th, .notification-table td {
+      padding: 6px;
+      font-size: 14px;
+    }
+  
+    h3 {
+      font-size: 18px;
+    }
+  }
+  
