@@ -51,7 +51,7 @@
                             <div class="dropdown-box">
                                 <div class="dropdown-content" [ngClass]="{'show': dropdownOpen}">
                                     <a routerLink="changePassword" (click)="changePassword()">Change Password</a>
-                                    <a href="#" (click)="logout()">Logout</a>
+                                    <a routerLink="/login" (click)="logout()">Logout</a>
                                 </div>
                             </div>
                         </li>
@@ -73,8 +73,8 @@
 <div class="side-menu" [ngClass]="{'show': sideMenuOpen}">
     <a class="closebtn" (click)="toggleSideMenu()">&times;</a>
     <a routerLink="terms">Terms and Conditions</a>
-    <a routerLink="about">About Us</a>
     <a routerLink="privacy">Privacy Policy</a>
+    <a routerLink="about">About Us</a>
 </div>
 
 <router-outlet></router-outlet>

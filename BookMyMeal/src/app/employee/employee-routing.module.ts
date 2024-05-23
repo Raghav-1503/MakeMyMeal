@@ -11,17 +11,7 @@ import { ViewBookingComponent } from './view-booking/view-booking.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
-  {path:'',component:EmployeeComponent,children:[
-    {path:'',component:CalenderComponent},  
-    {path:'calender',component:CalenderComponent},
-    {path:'',component:MealOfTheDayComponent},
-    {path:'viewBooking',component:ViewBookingComponent},
-    {path:'coupon',component:CouponComponent},
-    {path:'about',component:AboutComponent},
-    {path:'privacy-policy',component:PrivacyPolicyComponent},
-    {path:'terms',component:TermsComponent},
-    {path:'changePassword',component:ChangePasswordComponent},
-  ]}
+  
 ];
 
 @NgModule({
