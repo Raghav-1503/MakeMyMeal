@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsMod
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { BookService } from 'src/app/services/book.service'; 
 import { HttpClientModule } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 
 
@@ -37,6 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatDialogModule,
     HttpClientModule,
+    MatTooltipModule,
+    OverlayModule
 
   ],
   providers: [BookService],
