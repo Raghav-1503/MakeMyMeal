@@ -1,46 +1,63 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/signup/auth.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-  isSpinning!: boolean;
-  hide =true;
-  hidePassword: any;
+  isSpinning = false;
+  hide = true;
 
-  constructor(private service: AuthService,
-    private fb: FormBuilder) { }
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.loginForm = this.fb.group({
-      emailId:[null, Validators.required,Validators.email],
+      email: [null, [Validators.required, Validators.email]],
       password: [null, Validators.required]
-
-    })
+    });
   }
 
-  submitform(){
-    this.service.login(this.loginForm.value).subscribe((res) => {
-    console.log(res);
-    if(res.EmployeeId!= null){
-      const user = {
-        id: res.employeeid
-      }
-      console.log(user);
-      StorageService.saveToken(res.jwt);
-      StorageService.saveUser(user);
+  submitForm() {
+    if (this.loginForm.valid) {
+      this.isSpinning = true;
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (res) => {
+          console.log(res);
+          if (res.employee_id != null) {
+            const user = {
+              id: res.employee_id
+            };
+            console.log(user);
+            StorageService.saveToken(res.jwt);
+            StorageService.saveUser(user);
+            this.router.navigate(['/employee']);
+          } else {
+            console.log("Wrong Credentials");
+          }
+          this.isSpinning = false;
+        },
+        error: (err) => {
+          console.error('Login error', err);
+          this.isSpinning = false;
+        }
+      });
+    } else {
+      console.log("Form is invalid");
     }
-    else{
-      console.log("Wrong Credenitals")
-    }
-    })
   }
 
+  togglePasswordVisibility() {
+    this.hide = !this.hide;
+  }
 }
