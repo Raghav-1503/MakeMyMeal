@@ -111,7 +111,7 @@
           <div class="form-group">
             <mat-form-field appearance="fill" style="border-style: none; height: 70px; width: 450px;">
               <mat-label>Email</mat-label>
-              <input matInput placeholder="email Id" id="emailId" formControlName="emailId">
+              <input matInput placeholder="email Id" id="emailId" formControlName="email">
               <mat-error *ngIf="validateForm?.get('emailId')?.hasError('required')">The input is not valid
                 E-mail!</mat-error>
             </mat-form-field>
@@ -123,7 +123,7 @@
               <input matInput placeholder="Contact No (10 digits), (Max 10 character)" id="contactNo" type="tel"
                 pattern="[0-9]{10}" maxlength="10" formControlName="contactNo">
               <mat-error *ngIf="validateForm?.get('contactNo')?.hasError('required')">Please enter a valid
-                Contact No (10 digits)</mat-error>
+                ContactNo (10 digits)</mat-error>
             </mat-form-field>
           </div>
 

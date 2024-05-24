@@ -14,7 +14,7 @@
             <div class="form-group">
               <mat-form-field appearance="fill" style="border-style: none; height: 70px; width: 450px;">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="emailId" formControlName="emailId" type="text">
+                <input matInput placeholder="emailId" formControlName="email" type="text">
                 <mat-error *ngIf="loginForm.get('emailId')?.hasError('required')">Please input your email!</mat-error>
               </mat-form-field>
             </div>
