@@ -11,6 +11,7 @@ import { AboutComponent } from '../app/about/about.component';
 import { PrivacyPolicyComponent } from '../app/privacy-policy/privacy-policy.component';
 import { TermsComponent } from '../app/terms/terms.component';
 import { ChangePasswordComponent } from '../employee/change-password/change-password.component';
+import { ForgotPasswordComponent } from '../app/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {path:'',component:SignupComponent},
@@ -26,6 +27,8 @@ const routes: Routes = [
     {path:'privacy-policy',component:PrivacyPolicyComponent},
     {path:'terms',component:TermsComponent},
     {path:'changePassword',component:ChangePasswordComponent},
+    {path:'ForgotPassword',component:ForgotPasswordComponent},
+    
   ]}
 ];
 
