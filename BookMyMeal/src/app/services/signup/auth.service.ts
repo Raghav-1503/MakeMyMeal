@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError,map } from 'rxjs/operators';
 import { __param } from 'tslib';
 
 const BASIC_URL = "http://localhost:8080/";
@@ -9,31 +9,41 @@ const BASIC_URL = "http://localhost:8080/";
   providedIn: 'root'
 })
 export class AuthService {
-
+  private isAuthenticated = false;
 
   constructor(private http: HttpClient) { }
+
+  getAuthStatus(): boolean {
+    return this.isAuthenticated;
+  }
 
   signup(SignupRequest: any): Observable<any> {
     return this.http.post(BASIC_URL + "api/auth/signup", SignupRequest).pipe(
       catchError(error => {
-        // Handle error, log it, or rethrow
-        const err = new Error('test');
-        return throwError(() => err);
+        return throwError(() => new Error('Signup error'));
       })
     );
   }
 
   login(loginRequest: any): Observable<any> {
-    return this.http.post(BASIC_URL + "api/auth/login", loginRequest).pipe(
+    return this.http.post<{ token: string }>(BASIC_URL + "api/auth/login", loginRequest).pipe(
+      map(response => {
+        if (response.token) {
+          this.isAuthenticated = true;
+          localStorage.setItem('authToken', response.token);
+        }
+        return response;
+      }),
       catchError(error => {
-        // Handle error, log it, or rethrow
-        const err = new Error('test');
-        return throwError(() => err);
+        this.isAuthenticated = false;
+        return throwError(() => new Error('Login error'));
       })
     );
   }
-}
 
-function deprecated(target: typeof AuthService): void | typeof AuthService {
-  throw new Error('Function not implemented.');
+  logout(): void {
+    this.isAuthenticated = false;
+    localStorage.removeItem('authToken');
+  }
 }
+   

@@ -27,6 +27,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     PrivacyPolicyComponent,
     ForgotPasswordComponent,
     
+    
   ],
   imports: [
     BrowserModule,
