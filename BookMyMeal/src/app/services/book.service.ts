@@ -12,7 +12,7 @@ export class BookService {
   constructor(private http: HttpClient) {}
 
   BookingBulk(booking: any):Observable<any> {
-      return this.http.post(BASIC_URL +"/api/bookings/multiple",booking);
+      return this.http.post(BASIC_URL +"/api/bookings/single",booking);
   }
 
 
