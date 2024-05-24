@@ -27,6 +27,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     TermsComponent,
     PrivacyPolicyComponent,
     
+    
   ],
   imports: [
     BrowserModule,
