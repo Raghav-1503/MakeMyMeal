@@ -11767,7 +11767,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
 .login-content {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 @media (max-width: 991.98px) {
   .login-content {
