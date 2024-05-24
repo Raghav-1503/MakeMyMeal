@@ -15,16 +15,9 @@ import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsMod
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { BookService } from 'src/app/services/book.service'; 
 import { HttpClientModule } from '@angular/common/http';
-
-import { OverlayModule } from '@angular/cdk/overlay';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { ForgotPasswordComponent } from './app/forgot-password/forgot-password.component';
-
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { OverlayModule } from '@angular/cdk/overlay';
-
-
-
 
 @NgModule({
   declarations: [
@@ -46,13 +39,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
     ReactiveFormsModule,
     MatDialogModule,
     HttpClientModule,
-
     OverlayModule,
-    MatTooltipModule
-
     MatTooltipModule,
     OverlayModule
-
 
   ],
   providers: [BookService],
