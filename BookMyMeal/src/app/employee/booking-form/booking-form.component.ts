@@ -298,6 +298,8 @@ export class BookingFormComponent implements OnInit {
   dateValidator(control: AbstractControl): ValidationErrors | null {
     const date = new Date(control.value);
     const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
     today.setHours(0, 0, 0, 0);
 
     if (isNaN(date.getTime())) {
@@ -307,7 +309,7 @@ export class BookingFormComponent implements OnInit {
     const maxDate = new Date();
     maxDate.setMonth(today.getMonth() + 3);
 
-    if (date < today || date > maxDate) {
+    if (date <= tomorrow || date > maxDate) {
       return { invalidRange: true };
     }
 
@@ -327,7 +329,7 @@ export class BookingFormComponent implements OnInit {
       return null;
     }
 
-    if (new Date(endingDate) <= new Date(startingDate)) {
+    if (new Date(endingDate) < new Date(startingDate)) {
       return { endDateBeforeStartDate: true };
     }
 

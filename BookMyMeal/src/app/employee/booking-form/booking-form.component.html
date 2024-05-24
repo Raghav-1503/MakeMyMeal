@@ -164,7 +164,7 @@
       <label>Select Category</label>
       <div class="d-flex align-content-center justify-content-start">
         <div class="radio-block">
-          <input type="radio" id="Catagory1" value="Lunch" formControlName="category" required/>
+          <input type="radio" id="Catagory1" value="Lunch" formControlName="category" />
           <label for="Catagory1" class="mr-0">Lunch</label>
         </div>
         <div class="radio-block">
@@ -226,6 +226,8 @@
   
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-primary" (click)="onCancel()">Cancel</button>
+
     <button type="button" class="btn btn-primary"  (click)="booked()">Book</button>
+
   </div>
 </form>
