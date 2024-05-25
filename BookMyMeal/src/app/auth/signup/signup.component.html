@@ -81,16 +81,16 @@
   <section class="login-content">
     <div class="login-content-lt"></div>
     <div class="login-content-rt">
-      <div class="login-box" style="height: 100vh; margin-top: 50px;">
+      <div class="login-box" style="height: 100vh; margin-top: 90px;">
         
-        <form class="login-form" [formGroup]="validateForm">
+        <form class="login-form" [formGroup]="validateForm" style="margin-top: 50px;">
           <div class="logo-wrapper">
             <img src="../assets/images/logo.svg" alt="Rishabh Software">
             <span>Meal Facility</span>
           </div>
-          <h3 class="login-head" style="margin-bottom: 5px;">Register Your Account</h3>
+          <h3 class="login-head" style="margin-bottom: 30px;">Register Your Account</h3>
           
-
+<!-- 
           <div class="form-group" style="width: auto;">
             <mat-form-field appearance="fill" style="border-style: none; height: 70px; width: 450px;">
               <mat-label>Employee ID (Max 15 characters)</mat-label>
@@ -99,7 +99,7 @@
               <mat-error *ngIf="validateForm?.get('employeeId')?.hasError('required')">Please enter a
                 valid Employee ID</mat-error>
             </mat-form-field>
-          </div>
+          </div> -->
 
           <div class="form-group">
             <mat-form-field appearance="fill" style="border-style: none; height: 70px; width: 450px;">
@@ -123,7 +123,7 @@
             <mat-form-field appearance="fill" style="border-style: none; height: 70px; width: 450px;">
               <mat-label>Contact No (10 digits)</mat-label>
               <input matInput placeholder="Contact No (10 digits), (Max 10 character)" id="contactNo" type="tel"
-                pattern="[0-9]{10}" maxlength="10" formControlName="contactNo">
+                pattern="[0-9]{10}" maxlength="10" formControlName="contactno">
               <mat-error *ngIf="validateForm?.get('contactNo')?.hasError('required')">Please enter a valid
                 ContactNo (10 digits)</mat-error>
             </mat-form-field>

@@ -17,19 +17,7 @@ const routes: Routes = [
   {path:'',component:SignupComponent},
   {path:'signup',component:SignupComponent},
   {path:'login',component:LoginComponent},
-  {path:'employee',component:EmployeeComponent,children:[
-    {path:'',component:CalenderComponent},  
-    {path:'calender',component:CalenderComponent},
-    {path:'',component:MealOfTheDayComponent},
-    {path:'viewBooking',component:ViewBookingComponent},
-    {path:'coupon',component:CouponComponent},
-    {path:'about',component:AboutComponent},
-    {path:'privacy-policy',component:PrivacyPolicyComponent},
-    {path:'terms',component:TermsComponent},
-    {path:'changePassword',component:ChangePasswordComponent},
-    {path:'ForgotPassword',component:ForgotPasswordComponent},
-    
-  ]}
+  
 ];
 
 @NgModule({

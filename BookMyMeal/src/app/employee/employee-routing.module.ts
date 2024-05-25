@@ -9,8 +9,27 @@ import { MealOfTheDayComponent } from './meal-of-the-day/meal-of-the-day.compone
 import { CouponComponent } from './coupon/coupon.component';
 import { ViewBookingComponent } from './view-booking/view-booking.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgotPasswordComponent } from '../app/forgot-password/forgot-password.component';
 
 const routes: Routes = [
+
+  { path: '', redirectTo: 'employee', pathMatch: 'full' }, // Redirect root to employee
+  { 
+    path: 'employee', 
+    component: EmployeeComponent,
+    children: [
+      { path: '', redirectTo: 'calender', pathMatch: 'full' }, // Default child route
+      { path: 'calender', component: CalenderComponent },
+      { path: 'meal-of-the-day', component: MealOfTheDayComponent },
+      { path: 'viewBooking', component: ViewBookingComponent },
+      { path: 'coupon', component: CouponComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'privacy-policy', component: PrivacyPolicyComponent },
+      { path: 'terms', component: TermsComponent },
+      { path: 'changePassword', component: ChangePasswordComponent },
+      { path: 'ForgotPassword', component: ForgotPasswordComponent },
+    ]
+  }
   
 ];
 
