@@ -5,6 +5,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { NotificationComponent } from '../notification/notification.component';
 import { NotificationService } from 'src/app/services/notification.service';
+import { AuthService } from 'src/app/services/signup/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +18,7 @@ export class NavbarComponent {
   notificationCount = 0;
   sideMenuOpen = false;
 
-  constructor(private dialogRef: MatDialog, private router: Router,public dialog: MatDialog, private notificationService: NotificationService) {}
+  constructor(private dialogRef: MatDialog, private router: Router,public dialog: MatDialog, private notificationService: NotificationService,private authService: AuthService) {}
 
   ngOnInit() {
     this.router.events
@@ -54,9 +55,9 @@ export class NavbarComponent {
     console.log('Change Password clicked');
   }
 
-  logout() {
-    // Handle logout logic here
-    console.log('Logout clicked');
+  logout(): void {
+    this.authService.logout(); // Call the logout method from AuthService
+    this.router.navigate(['/login']); // Navigate to the login page
   }
 
   checkRoute(url: string) {
