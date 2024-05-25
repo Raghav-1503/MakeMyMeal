@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'employee', loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule), canActivate: [authGuard] },
   { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'ForgotPassword', component: ForgotPasswordComponent },
-  // { path: '**', redirectTo: '' }  // Redirect unknown paths to the home page
+  { path: '**', redirectTo: '' }  // Redirect unknown paths to the home page
 ];
 
 @NgModule({

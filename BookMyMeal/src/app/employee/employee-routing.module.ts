@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
       { path: 'terms', component: TermsComponent },
-      { path: 'changePassword', component: ChangePasswordComponent },
+      // { path: 'changePassword', component: ChangePasswordComponent },
       { path: 'ForgotPassword', component: ForgotPasswordComponent },
     ]
   }
