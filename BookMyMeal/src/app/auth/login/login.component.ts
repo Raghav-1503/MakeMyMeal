@@ -163,6 +163,7 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           if (res.jwt) {
             StorageService.saveToken(res.jwt);
+            StorageService.saveUsername(res.name);
             this.router.navigate(['/employee']);
             this.loginError = false;  // Reset login error
           } else {
