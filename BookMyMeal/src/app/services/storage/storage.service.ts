@@ -57,6 +57,7 @@ import { Injectable } from '@angular/core';
 const USER = 'user';
 const USERNAME = 'username';
 const TOKEN = 'token';
+const USERID = 'userid';
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +77,11 @@ export class StorageService {
     window.localStorage.setItem(TOKEN, token);
   }
 
+  static saveUserId(userid: any): void {
+    window.localStorage.removeItem(USERID);
+    window.localStorage.setItem(USERID, userid);
+  }
+
   static saveUser(user: any): void {
     window.localStorage.removeItem(USER);
     window.localStorage.setItem(USER, JSON.stringify(user));
@@ -83,6 +89,10 @@ export class StorageService {
 
   static getToken(): string | null {
     return window.localStorage.getItem(TOKEN);
+  }
+
+  static getUserId(): string | null {
+    return window.localStorage.getItem(USERID);
   }
 
   static getUsername(): string | null {
@@ -106,5 +116,9 @@ export class StorageService {
 
   static clearUsername(): void {
     window.localStorage.removeItem(USERNAME);
+  }
+
+  static clearUserId(): void {
+    window.localStorage.removeItem(USERID);
   }
 }
