@@ -130,6 +130,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/signup/auth.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { Router } from '@angular/router';
+import { SafeSubscriber } from 'rxjs/internal/Subscriber';
 
 @Component({
   selector: 'app-login',
@@ -164,6 +165,7 @@ export class LoginComponent implements OnInit {
           if (res.jwt) {
             StorageService.saveToken(res.jwt);
             StorageService.saveUsername(res.name);
+            StorageService.saveUserId(res.employee_id)
             this.router.navigate(['/employee']);
             this.loginError = false;  // Reset login error
           } else {

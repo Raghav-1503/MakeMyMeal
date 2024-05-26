@@ -134,7 +134,7 @@ export class AuthService {
   }
 
   signup(SignupRequest: any): Observable<any> {
-    return this.http.post<{ token: string, name: string }>(BASIC_URL + "api/auth/signup", SignupRequest).pipe(
+    return this.http.post<{ token: string, name: string, employee_id:any }>(BASIC_URL + "api/auth/signup", SignupRequest).pipe(
       catchError(error => {
         return throwError(() => new Error('Signup error'));
       })
@@ -142,13 +142,14 @@ export class AuthService {
   }
 
   login(loginRequest: any): Observable<any> {
-    return this.http.post<{ name: string; token: string }>(BASIC_URL + "api/auth/login", loginRequest).pipe(
+    return this.http.post<{ name: string; token: string; employee_id:any }>(BASIC_URL + "api/auth/login", loginRequest).pipe(
       map(response => {
         if (response.token) {
           this.isAuthenticated = true;
           
           StorageService.saveToken(response.token);
           StorageService.saveUsername(response.name);
+          StorageService.saveUserId(response.employee_id);
           console.log('Login response:', response);
         }
         return response;
@@ -165,6 +166,7 @@ export class AuthService {
     
     StorageService.clearToken();
     StorageService.clearUsername();
+    StorageService.clearUserId();
   
   }
 }
