@@ -243,7 +243,7 @@ export class NavbarComponent implements OnInit {
   }
 
   checkRoute(url: string) {
-    if (url.includes('changePassword')) {
+    if (url.includes('ForgotPassword')) {
       this.hideNavbar = true;
       this.hideFooter = true;
     } else {

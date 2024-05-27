@@ -13,11 +13,12 @@ import { TermsComponent } from './app/terms/terms.component';
 import { PrivacyPolicyComponent } from './app/privacy-policy/privacy-policy.component';
 import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 import { MatDialogModule } from '@angular/material/dialog'; 
-import { BookService } from 'src/app/services/book.service'; 
+import { BookService } from './services/BookMeal/book.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './app/forgot-password/forgot-password.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { OtpComponent } from './app/otp/otp.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     TermsComponent,
     PrivacyPolicyComponent,
     ForgotPasswordComponent,
+    OtpComponent,
     
     
   ],

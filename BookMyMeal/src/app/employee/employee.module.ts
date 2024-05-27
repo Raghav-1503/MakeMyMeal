@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { QuickMealComponent } from './quick-meal/quick-meal.component';
 import { ReactiveFormsModule } from '@angular/forms'; 
-import { BookService } from 'src/app/services/book.service';
+import { BookService } from '../services/BookMeal/book.service';
 import { BookingFormComponent } from './booking-form/booking-form.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { QrCodeModule } from 'ng-qrcode';
@@ -28,6 +28,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatTableModule,
     MatSelectModule,
+    MatIconModule
   ],
   providers: [BookService]
 })

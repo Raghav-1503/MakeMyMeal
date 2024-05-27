@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-const BASIC_URL=["http://localhost:8080"]
-
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
+  private baseUrl = 'http://localhost:8080/api/bookings'; // Adjust the base URL as needed
+
   constructor(private http: HttpClient) {}
 
-  BookingBulk(booking: any):Observable<any> {
-      return this.http.post(BASIC_URL +"/api/bookings/single",booking);
+  BookingBulk(bookingData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/multiple`, bookingData);
   }
 
 
