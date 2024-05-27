@@ -10,12 +10,12 @@ import { CouponComponent } from './coupon/coupon.component';
 import { ViewBookingComponent } from './view-booking/view-booking.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgotPasswordComponent } from '../app/forgot-password/forgot-password.component';
+import { OtpComponent } from '../app/otp/otp.component';
 
 const routes: Routes = [
-
   { path: '', redirectTo: 'employee', pathMatch: 'full' }, // Redirect root to employee
-  { 
-    path: 'employee', 
+  {
+    path: 'employee',
     component: EmployeeComponent,
     children: [
       { path: '', redirectTo: 'calender', pathMatch: 'full' }, // Default child route
@@ -26,15 +26,15 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
       { path: 'terms', component: TermsComponent },
-      // { path: 'changePassword', component: ChangePasswordComponent },
+      { path: 'changePassword', component: ChangePasswordComponent },
       { path: 'ForgotPassword', component: ForgotPasswordComponent },
-    ]
-  }
-  
+      { path: 'OTP', component: OtpComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class EmployeeRoutingModule { }
+export class EmployeeRoutingModule {}

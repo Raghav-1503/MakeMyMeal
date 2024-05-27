@@ -231,10 +231,12 @@
 //     return `${year}-${month}-${day}`;
 //   }
 // }
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { BookService } from 'src/app/services/book.service';
+import { BookService } from 'src/app/services/BookMeal/book.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-booking-form',
@@ -249,7 +251,8 @@ export class BookingFormComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<BookingFormComponent>
+    private dialogRef: MatDialogRef<BookingFormComponent>,
+    private storageService: StorageService
   ) {
     const today = new Date();
     this.minDate = this.formatDate(today);
@@ -264,7 +267,7 @@ export class BookingFormComponent implements OnInit {
       category: [null, Validators.required],
       startingDate: [null, [Validators.required, this.dateValidator.bind(this)]],
       endingDate: [null, [Validators.required, this.dateValidator.bind(this), this.endingDateValidator.bind(this)]],
-      employee_id: [null, Validators.required]
+      employee_id: [this.getCurrentLoggedInEmployeeId(), Validators.required]
     });
 
     this.bookingForm.get('startingDate')?.valueChanges.subscribe(() => {
@@ -272,10 +275,35 @@ export class BookingFormComponent implements OnInit {
     });
   }
 
+  // booked() {
+  //   if (this.bookingForm.valid) {
+  //     console.log(this.bookingForm.value);
+  //     this.bookService.BookingBulk(this.bookingForm.value).subscribe({
+  //       next: (res) => {
+  //         console.log(res);
+  //         alert("Booking done Successfully!");
+  //       },
+  //       error: (err) => {
+  //         console.log(err.message);
+  //       }
+  //     });
+  //   } else {
+  //     this.bookingForm.markAllAsTouched();
+  //     console.log('Form is invalid:', this.bookingForm.errors);
+  //     this.logFormErrors();
+  //   }
+  // }
+
   booked() {
     if (this.bookingForm.valid) {
-      console.log(this.bookingForm.value);
-      this.bookService.BookingBulk(this.bookingForm.value).subscribe({
+      // Add the employee_id to the form data
+      const bookingData = {
+        ...this.bookingForm.value,
+        employee_Id: this.getCurrentLoggedInEmployeeId()
+      };
+  
+      console.log(bookingData);
+      this.bookService.BookingBulk(bookingData).subscribe({
         next: (res) => {
           console.log(res);
           alert("Booking done Successfully!");
@@ -290,6 +318,12 @@ export class BookingFormComponent implements OnInit {
       this.logFormErrors();
     }
   }
+  
+  getCurrentLoggedInEmployeeId(): number {
+    const userId = StorageService.getUserId();
+    return userId ? parseInt(userId, 10) : 0; // Default to 0 if not found
+  }
+  
 
   onCancel(): void {
     this.dialogRef.close();
