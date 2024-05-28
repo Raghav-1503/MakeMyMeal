@@ -123,7 +123,7 @@
             <mat-form-field appearance="fill" style="border-style: none; height: 70px; width: 450px;">
               <mat-label>Contact No (10 digits)</mat-label>
               <input matInput placeholder="Contact No (10 digits), (Max 10 character)" id="contactNo" type="tel"
-                pattern="[0-9]{10}" maxlength="10" formControlName="contactno">
+                pattern="[0-9]{10}" maxlength="10" formControlName="contactNo">
               <mat-error *ngIf="validateForm?.get('contactNo')?.hasError('required')">Please enter a valid
                 ContactNo (10 digits)</mat-error>
             </mat-form-field>

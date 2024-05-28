@@ -19,6 +19,7 @@ import { ForgotPasswordComponent } from './app/forgot-password/forgot-password.c
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { OtpComponent } from './app/otp/otp.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,6 @@ import { OtpComponent } from './app/otp/otp.component';
     PrivacyPolicyComponent,
     ForgotPasswordComponent,
     OtpComponent,
-    
     
   ],
   imports: [
@@ -44,7 +44,8 @@ import { OtpComponent } from './app/otp/otp.component';
     HttpClientModule,
     OverlayModule,
     MatTooltipModule,
-    OverlayModule
+    OverlayModule,
+    MatSnackBarModule
 
   ],
   providers: [BookService],
