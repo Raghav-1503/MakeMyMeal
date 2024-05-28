@@ -39,23 +39,19 @@
       <tbody>
         <tr *ngFor="let booking of paginatedBookings; index as i">
           <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
-          <td>{{ booking.date }}</td>
+          <td>{{ formatDate(booking.bookingDate) }}</td>
           <td>{{ booking.category }}</td>
           <td>
-            <button (click)="cancelBooking((currentPage - 1) * itemsPerPage + i)">Cancel Booking</button>
+            <button (click)="openCancelDialog(booking)">Cancel Booking</button>
           </td>
         </tr>
       </tbody>
     </table>
 
     <div class="pagination-controls">
-      <div class="button">
-      <button (click)="previousPage()" [disabled]="currentPage === 1"> < </button>
-    </div>
+      <button (click)="previousPage()" [disabled]="currentPage === 1">&lt;</button>
       <span>Page {{ currentPage }} of {{ totalPages }}</span>
-    <div class="button">
-      <button (click)="nextPage()" [disabled]="currentPage === totalPages"> > </button>
-    </div>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">&gt;</button>
     </div>
   </div>
 </div>

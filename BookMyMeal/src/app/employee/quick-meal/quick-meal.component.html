@@ -36,7 +36,7 @@
   </div>
    -->
 
-   <div class="popup" *ngIf="isVisible">
+   <!-- <div class="popup" *ngIf="isVisible">
     <div class="popup-content">
       <div class="popup-header">
         <h3>Quick Meal</h3>
@@ -57,5 +57,30 @@
         <button class="btn btn-primary" (click)="bookMeal()">Book Meal</button>
       </div>
     </div>
+  </div> -->
+
+  <div class="popup" *ngIf="isVisible">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h3>Quick Meal</h3>
+        <span class="close" (click)="closePopup()">&times;</span>
+      </div>
+      <div class="popup-body">
+        <p class="note">Note: This will book a meal for {{ tomorrowDate }}</p>
+        <div class="form-group">
+          <label>Meal Type:</label><br>
+          <input type="radio" id="lunch" name="meal" value="Lunch" (change)="onCategoryChange($event)">
+          <label for="lunch">Lunch</label><br>
+          <input type="radio" id="dinner" name="meal" value="Dinner" (change)="onCategoryChange($event)">
+          <label for="dinner">Dinner</label><br>
+        </div>
+      </div>
+      <div class="popup-footer">
+        <button class="btn btn-secondary" (click)="closePopup()">Close</button>
+        <button class="btn btn-primary" (click)="bookMeal()">Book Meal</button>
+      </div>
+    </div>
   </div>
+  
+  
   

@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { CancelBookingDialogComponent } from './cancel-booking-dialog/cancel-booking-dialog.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MatIconModule } from '@angular/material/icon';
     ViewBookingComponent,
     ChangePasswordComponent,
     NotificationComponent,
+    CancelBookingDialogComponent,
 
   ],
   imports: [
