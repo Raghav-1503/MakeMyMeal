@@ -31,47 +31,28 @@
                 <div class="h-100 d-lg-inline-flex align-items-center">
                     <ul class="app-nav">
 
-                        <!-- <li class="dropdown"><a class="app-nav__item notification-num" href="#" data-toggle="dropdown"
-                                aria-label="Show notifications"><i class="icon-bell"></i>
-                                <span class="num">5</span>
-                            </a></li> -->
-
-                            <li class="dropdown">
-                                <a class="app-nav__item notification-num" (click)="toggleNotifications($event)" aria-label="Show notifications">
-                                  <i class="icon-bell"></i>
-                                  <span class="num">{{ notificationCount }}</span>
-                                </a>
-                              </li>
-
-
-
-                        <!-- <li class="dropdown"><a class="app-nav__item dropdown-toggle" id="username"
-                                data-toggle="dropdown" aria-label="Open Profile Menu"
-                                (click)="toggleDropdown()">Employee</a>
-                            <div class="dropdown-box">
-                                <div class="dropdown-content" [ngClass]="{'show': dropdownOpen}">
-                                    <a routerLink="ForgotPassword" (click)="changePassword()">Change Password</a>
-                                    <a routerLink="/login" (click)="logout()">Logout</a>
-                                </div>
-                            </div>
-                        </li> -->
+                        <li class="dropdown">
+                            <a class="app-nav__item notification-num" (click)="toggleNotifications($event)"
+                                aria-label="Show notifications">
+                                <i class="icon-bell"></i>
+                                <span class="num">{{ notificationCount }}</span>
+                            </a>
+                        </li>
 
                         <li class="dropdown">
                             <a class="app-nav__item dropdown-toggle" id="username" data-toggle="dropdown"
                                 aria-label="Open Profile Menu" (click)="toggleDropdown()">{{ username }}</a>
                             <div class="dropdown-box">
                                 <div class="dropdown-content" [ngClass]="{'show': dropdownOpen}">
-                                    <a routerLink="ForgotPassword" (click)="changePasswordAndCloseDropdown()">Change
+                                    <a routerLink="changePassword" (click)="changePasswordAndCloseDropdown()">Change
                                         Password</a>
                                     <a routerLink="/login" (click)="logout()">Logout</a>
                                 </div>
                             </div>
                         </li>
 
-
                         <li class="dropdown">
                             <a class="app-nav__item " (click)="toggleSideMenu()" aria-label="Open Side Menu">
-                                <!-- <i class="app-nav__item menu-icon"></i> -->
                                 <i class="fa-solid fa-bars"></i>
                             </a>
                         </li>

@@ -118,6 +118,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BookingFormComponent } from '../booking-form/booking-form.component';
+import { CalendarEvent } from 'angular-calendar';
 
 @Component({
   selector: 'app-calender',
@@ -235,4 +236,5 @@ export class CalenderComponent implements OnInit {
   openDialog() {
     this.dialogRef.open(BookingFormComponent);
   }
+
 }

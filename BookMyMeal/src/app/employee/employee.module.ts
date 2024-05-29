@@ -30,6 +30,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { CancelBookingDialogComponent } from './cancel-booking-dialog/cancel-booking-dialog.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 @NgModule({
@@ -65,7 +67,11 @@ import { CancelBookingDialogComponent } from './cancel-booking-dialog/cancel-boo
     MatPaginatorModule,
     MatTableModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [BookService]
 })
