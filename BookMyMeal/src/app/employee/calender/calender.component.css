@@ -165,3 +165,18 @@ mat-calendar {
   text-decoration: none;
   display: inline-block;
 }
+
+.holiday {
+  background-color: blue;
+  color: white;
+}
+
+.absent {
+  background-color: red;
+  color: white;
+}
+
+.present {
+  background-color: green;
+  color: white;
+}

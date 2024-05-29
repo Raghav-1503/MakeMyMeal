@@ -16,7 +16,7 @@ export class OtpComponent {
 
   ngOnInit(){
     this.OtpForm = this.fb.group({
-      emailId:[null, Validators.required,Validators.email],
+      otp:[null, Validators.required,Validators.email],
 
     })
   }

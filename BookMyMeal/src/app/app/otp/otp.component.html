@@ -14,16 +14,16 @@
             <div class="form-group">
                 <mat-form-field appearance="fill" style="border-style: none; height: 70px; width: 450px;">
                   <mat-label>OTP</mat-label>
-                  <input matInput placeholder="Enter your OTP here... ." id="otp" type="tel"
-                    pattern="[0-9]{10}" length="6" formControlName="contactno">
-                  <mat-error *ngIf="OtpForm?.get('contactNo')?.hasError('required')">Please enter a valid
+                  <input matInput placeholder="Enter your OTP here... ." id="otp" type="number"
+                    pattern="[0-9]{10}" length="6" formControlName="otp">
+                  <mat-error *ngIf="OtpForm.get('OtpForm')?.hasError('required')">Please enter a valid
                     OTP</mat-error>
                 </mat-form-field>
               </div>
   
             <div class="form-group">
               <button mat-raised-button color="primary" class="login-form-button login-form-margin" type="submit"
-                routerLink="/changePassword">Submit OTP</button>
+                routerLink="/resetPasssword">Submit OTP</button>
             </div>
           </form>
         </div>

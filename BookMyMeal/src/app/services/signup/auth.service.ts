@@ -118,6 +118,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { StorageService } from '../storage/storage.service';
 import { Token } from '@angular/compiler';
+import { ChangePasswordRequest } from 'src/app/app/change-pssword-request.model';
 
 const BASIC_URL = "http://localhost:8080/";
 
@@ -157,6 +158,24 @@ export class AuthService {
       catchError(error => {
         this.isAuthenticated = false;
         return throwError(() => new Error('Login error'));
+      })
+    );
+  }
+
+  changePassword(changePasswordRequest: ChangePasswordRequest): Observable<any> {
+    const url = `${BASIC_URL}api/auth/change-password`;
+    return this.http.post(url, changePasswordRequest).pipe(
+      catchError(error => {
+        return throwError(() => new Error('Change password error'));
+      })
+    );
+  }
+
+  reset(resetPassword: any): Observable<any> {
+    return this.http.post(BASIC_URL + "resetpassword", resetPassword).pipe(
+      catchError(error => {
+        const err = new Error('test'); 
+        return throwError(() => err);
       })
     );
   }

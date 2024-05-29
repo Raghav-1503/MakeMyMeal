@@ -11,6 +11,7 @@ import { ViewBookingComponent } from './view-booking/view-booking.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgotPasswordComponent } from '../app/forgot-password/forgot-password.component';
 import { OtpComponent } from '../app/otp/otp.component';
+import { ResetPasswordComponent } from '../app/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'employee', pathMatch: 'full' }, // Redirect root to employee
@@ -27,8 +28,10 @@ const routes: Routes = [
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
       { path: 'terms', component: TermsComponent },
       { path: 'changePassword', component: ChangePasswordComponent },
-      { path: 'ForgotPassword', component: ForgotPasswordComponent },
-      { path: 'OTP', component: OtpComponent },
+      // { path: 'ForgotPassword', component: ForgotPasswordComponent },
+      // { path: 'OTP', component: OtpComponent },
+      // { path: 'resetPasssword', component: ResetPasswordComponent },
+  
     ],
   },
 ];
