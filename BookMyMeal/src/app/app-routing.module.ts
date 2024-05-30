@@ -38,7 +38,7 @@ const routes: Routes = [
   // { path: 'ForgotPassword', component: ForgotPasswordComponent },
   // { path: 'OTP', component: OtpComponent },
   // { path: 'resetPassword', component: ResetPasswordComponent },
-  // { path: '**', redirectTo: '' }, // Redirect unknown paths to the home page
+  { path: '**', redirectTo: '' }, // Redirect unknown paths to the home page
 ];
 
 @NgModule({
