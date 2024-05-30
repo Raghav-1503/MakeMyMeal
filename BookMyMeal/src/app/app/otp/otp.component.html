@@ -1,32 +1,30 @@
 <body class="mt-0">
-    <section class="login-content">
-      <div class="login-content-lt"></div>
-      <div class="login-content-rt">
-        <div class="login-box" style="margin-top: -300px;">
-          <form class="login-form" [formGroup]="OtpForm" (ngSubmit)="submitform()">
-            <div class="logo-wrapper">
-              <img src="../assets/images/logo.svg" alt="Rishabh Software">
-              <span>Meal Facility</span>
-            </div>
-            <h3 class="login-head">Forgot Password</h3>
-            <p class="login-text">Enter OTP to change your Password.</p>
-  
-            <div class="form-group">
-                <mat-form-field appearance="fill" style="border-style: none; height: 70px; width: 450px;">
-                  <mat-label>OTP</mat-label>
-                  <input matInput placeholder="Enter your OTP here... ." id="otp" type="number"
-                    pattern="[0-9]{10}" length="6" formControlName="otp">
-                  <mat-error *ngIf="OtpForm.get('OtpForm')?.hasError('required')">Please enter a valid
-                    OTP</mat-error>
-                </mat-form-field>
-              </div>
-  
-            <div class="form-group">
-              <button mat-raised-button color="primary" class="login-form-button login-form-margin" type="submit"
-                routerLink="/resetPasssword">Submit OTP</button>
-            </div>
-          </form>
-        </div>
+  <section class="login-content">
+    <div class="login-content-lt"></div>
+    <div class="login-content-rt">
+      <div class="login-box" style="margin-top: -300px;">
+        <form class="login-form" [formGroup]="OtpForm" (ngSubmit)="verifyOtp()">
+          <div class="logo-wrapper">
+            <img src="../assets/images/logo.svg" alt="Rishabh Software">
+            <span>Meal Facility</span>
+          </div>
+          <h3 class="login-head">Forgot Password</h3>
+          <p class="login-text">Enter OTP to change your Password.</p>
+          <div class="form-group">
+            <mat-form-field appearance="fill" style="border-style: none; height: 70px; width: 450px;">
+              <mat-label>OTP</mat-label>
+              <input matInput placeholder="Enter your OTP here..." id="otp" type="number"
+                     pattern="[0-9]{6}" length="6" formControlName="otp">
+              <mat-error *ngIf="OtpForm.get('otp')?.hasError('required')">Please enter a valid OTP</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <button mat-raised-button color="primary" class="login-form-button login-form-margin" type="submit">
+              Submit OTP
+            </button>
+          </div>
+        </form>
       </div>
-    </section>
-  </body>
+    </div>
+  </section>
+</body>

@@ -9,9 +9,6 @@ import { MealOfTheDayComponent } from './meal-of-the-day/meal-of-the-day.compone
 import { CouponComponent } from './coupon/coupon.component';
 import { ViewBookingComponent } from './view-booking/view-booking.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { ForgotPasswordComponent } from '../app/forgot-password/forgot-password.component';
-import { OtpComponent } from '../app/otp/otp.component';
-import { ResetPasswordComponent } from '../app/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'employee', pathMatch: 'full' }, // Redirect root to employee

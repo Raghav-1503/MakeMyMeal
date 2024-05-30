@@ -58,6 +58,7 @@ const USER = 'user';
 const USERNAME = 'username';
 const TOKEN = 'token';
 const USERID = 'userid';
+const EMAIL = 'email'; 
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,14 @@ const USERID = 'userid';
 export class StorageService {
 
   constructor() { }
+
+  static saveEmail(email: string): void {
+    window.localStorage.setItem(EMAIL, email);
+  }
+
+  static getEmail(): string | null {
+    return window.localStorage.getItem(EMAIL);
+  }
 
   static saveUsername(username: string): void {
     window.localStorage.removeItem(USERNAME);
@@ -120,5 +129,9 @@ export class StorageService {
 
   static clearUserId(): void {
     window.localStorage.removeItem(USERID);
+  }
+
+  static clearEmail(): void {
+    window.localStorage.removeItem(EMAIL);
   }
 }

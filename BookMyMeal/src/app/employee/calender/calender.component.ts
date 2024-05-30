@@ -162,7 +162,7 @@ export class CalenderComponent implements OnInit {
   checkButtonStatus() {
     const now = new Date();
     const hours = now.getHours();
-    this.isButtonDisabled = hours >= 20 && hours < 24;
+    this.isButtonDisabled = hours >= 23 && hours < 24;
   }
 
   isWeekend(date: Date): boolean {

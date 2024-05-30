@@ -43,7 +43,7 @@
 
 // change-password.component.ts
 
-import { ChangePasswordRequest } from "src/app/app/change-pssword-request.model";
+// import { ChangePasswordRequest } from "src/app/app/change-pssword-request.model";
 import { Component } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "src/app/services/signup/auth.service";
@@ -82,22 +82,22 @@ export class ChangePasswordComponent {
   }
 
   changePassword() {
-    if (this.changepasswordForm.valid) {
-      const changePasswordRequest: ChangePasswordRequest = {
-        oldPassword: this.changepasswordForm.get('oldPassword')?.value,
-        newPassword: this.changepasswordForm.get('newPassword')?.value
-      };
+  //   if (this.changepasswordForm.valid) {
+  //     // const changePasswordRequest: ChangePasswordRequest = {
+  //     //   oldPassword: this.changepasswordForm.get('oldPassword')?.value,
+  //     //   newPassword: this.changepasswordForm.get('newPassword')?.value
+  //     // };
       
-      this.authService.changePassword(changePasswordRequest).subscribe(
-        response => {
-          console.log('Password changed successfully', response);
-          // Handle successful password change (e.g., show a success message, redirect)
-        },
-        error => {
-          console.error('Error changing password', error);
-          // Handle error (e.g., show an error message)
-        }
-      );
-    }
+  //     this.authService.changePassword(changePasswordRequest).subscribe(
+  //       response => {
+  //         console.log('Password changed successfully', response);
+  //         // Handle successful password change (e.g., show a success message, redirect)
+  //       },
+  //       error => {
+  //         console.error('Error changing password', error);
+  //         // Handle error (e.g., show an error message)
+  //       }
+  //     );
+  //   }
   }
 }

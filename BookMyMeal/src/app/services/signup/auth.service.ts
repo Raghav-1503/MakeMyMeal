@@ -1,124 +1,10 @@
-// import { HttpClient } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { Observable, throwError } from 'rxjs';
-// import { catchError, map } from 'rxjs/operators';
-// import { __param } from 'tslib';
 
-// const BASIC_URL = 'http://localhost:8080/';
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class AuthService {
-//   private isAuthenticated = false;
-
-//   constructor(private http: HttpClient) {}
-
-//   getAuthStatus(): boolean {
-//     return !!localStorage.getItem('token');
-//   }
-
-//   signup(SignupRequest: any): Observable<any> {
-//     return this.http
-//       .post<{ token: string; userrname: string }>(
-//         BASIC_URL + 'api/auth/signup',
-//         SignupRequest
-//       )
-//       .pipe(
-//         catchError((error) => {
-//           return throwError(() => new Error('Signup error'));
-//         })
-//       );
-//   }
-
-//   login(loginRequest: any): Observable<any> {
-//     return this.http
-//       .post<{
-//         name: string;
-//         token: string;
-//       }>(BASIC_URL + 'api/auth/login', loginRequest)
-//       .pipe(
-//         map((response) => {
-//           if (response.token) {
-//             this.isAuthenticated = true;
-//             localStorage.setItem('token', response.token);
-//             localStorage.setItem('name', response.name);
-//           }
-//           return response;
-//         }),
-//         catchError((error) => {
-//           this.isAuthenticated = false;
-//           return throwError(() => new Error('Login error'));
-//         })
-//       );
-//   }
-
-//   logout(): void {
-//     this.isAuthenticated = false;
-//     localStorage.removeItem('token');
-//     localStorage.removeItem('username');
-//   }
-// }
-
-
-// import { HttpClient } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { Observable, throwError } from 'rxjs';
-// import { catchError, map } from 'rxjs/operators';
-
-// const BASIC_URL = "http://localhost:8080/";
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class AuthService {
-//   private isAuthenticated = false;
-
-//   constructor(private http: HttpClient) { }
-
-//   getAuthStatus(): boolean {
-//     return !!localStorage.getItem('token');
-//   }
-
-//   signup(SignupRequest: any): Observable<any> {
-//     return this.http.post<{ token: string, name: string }>(BASIC_URL + "api/auth/signup", SignupRequest).pipe(
-//       catchError(error => {
-//         return throwError(() => new Error('Signup error'));
-//       })
-//     );
-//   }
-
-//   login(loginRequest: any): Observable<any> {
-//     return this.http.post<{ name: string; token: string }>(BASIC_URL + "api/auth/login", loginRequest).pipe(
-//       map(response => {
-//         if (response.token) {
-//           this.isAuthenticated = true;
-//           localStorage.setItem('token', response.token);
-//           localStorage.setItem('username', response.name);
-//         }
-//         return response;
-//       }),
-//       catchError(error => {
-//         this.isAuthenticated = false;
-//         return throwError(() => new Error('Login error'));
-//       })
-//     );
-//   }
-
-//   logout(): void {
-//     this.isAuthenticated = false;
-//     localStorage.removeItem('token');
-//     localStorage.removeItem('username');
-//   }
-// }
-
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { StorageService } from '../storage/storage.service';
-import { Token } from '@angular/compiler';
-import { ChangePasswordRequest } from 'src/app/app/change-pssword-request.model';
+import { ChangePasswordRequest } from 'src/app/app/change-password-request.model';
 
 const BASIC_URL = "http://localhost:8080/";
 
@@ -128,26 +14,26 @@ const BASIC_URL = "http://localhost:8080/";
 export class AuthService {
   private isAuthenticated = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private storageService: StorageService) { }
 
   getAuthStatus(): boolean {
-    return !!localStorage.getItem('token');
+    return !!StorageService.getToken();
   }
 
-  signup(SignupRequest: any): Observable<any> {
-    return this.http.post<{ token: string, name: string, employee_id:any }>(BASIC_URL + "api/auth/signup", SignupRequest).pipe(
-      catchError(error => {
-        return throwError(() => new Error('Signup error'));
+  signup(signupRequest: any): Observable<any> {
+    return this.http.post<{ token: string, name: string, employee_id: any }>(BASIC_URL + "api/auth/signup", signupRequest).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Signup error', error);
+        return throwError(() => new Error('Signup error: ' + error.message));
       })
     );
   }
 
   login(loginRequest: any): Observable<any> {
-    return this.http.post<{ name: string; token: string; employee_id:any }>(BASIC_URL + "api/auth/login", loginRequest).pipe(
+    return this.http.post<{ name: string; token: string; employee_id: any }>(BASIC_URL + "api/auth/login", loginRequest).pipe(
       map(response => {
         if (response.token) {
           this.isAuthenticated = true;
-          
           StorageService.saveToken(response.token);
           StorageService.saveUsername(response.name);
           StorageService.saveUserId(response.employee_id);
@@ -155,9 +41,34 @@ export class AuthService {
         }
         return response;
       }),
-      catchError(error => {
+      catchError((error: HttpErrorResponse) => {
         this.isAuthenticated = false;
-        return throwError(() => new Error('Login error'));
+        console.error('Login error', error);
+        return throwError(() => new Error('Login error: ' + error.message));
+      })
+    );
+  }
+
+  sendVerificationEmail(email: string): Observable<any> {
+    return this.http.post(`${BASIC_URL}forgot-password/verifyMail/${email}`, {}).pipe(
+      map(response => {
+        if (!response) {
+          throw new Error('Empty response from server');
+        }
+        return response;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Send verification email error', error);
+        return throwError(() => new Error('Send verification email error: ' + error.message));
+      })
+    );
+  }
+
+  verifyOtp(data: { email: string, otp: string }): Observable<any> {
+    return this.http.post(`${BASIC_URL}forgot-password/verifyOtp`, data).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Verify OTP error', error);
+        return throwError(() => new Error('Verify OTP error: ' + error.message));
       })
     );
   }
@@ -165,28 +76,34 @@ export class AuthService {
   changePassword(changePasswordRequest: ChangePasswordRequest): Observable<any> {
     const url = `${BASIC_URL}api/auth/change-password`;
     return this.http.post(url, changePasswordRequest).pipe(
-      catchError(error => {
-        return throwError(() => new Error('Change password error'));
+      catchError((error: HttpErrorResponse) => {
+        console.error('Change password error', error);
+        return throwError(() => new Error('Change password error: ' + error.message));
       })
     );
   }
 
   reset(resetPassword: any): Observable<any> {
-    return this.http.post(BASIC_URL + "resetpassword", resetPassword).pipe(
-      catchError(error => {
-        const err = new Error('test'); 
-        return throwError(() => err);
+    const email = StorageService.getEmail(); // Replace with the method to get email from local storage
+    const url = `${BASIC_URL}forgot-password/changepassword/${email}`;
+    
+    // Log the request details
+    console.log('Request URL:', url);
+    console.log('Request Body:', resetPassword);
+
+    return this.http.post(url, resetPassword).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Reset password error', error);
+        return throwError(() => new Error('Reset password error: ' + error.message));
       })
     );
   }
+  
 
   logout(): void {
-    
     this.isAuthenticated = false;
-    
-    StorageService.clearToken();
     StorageService.clearUsername();
+    StorageService.clearToken();
     StorageService.clearUserId();
-  
   }
 }
