@@ -160,6 +160,8 @@ export class LoginComponent implements OnInit {
   submitForm() {
     if (this.loginForm.valid) {
       this.isSpinning = true;
+      const email = this.loginForm.get('email')?.value;
+      StorageService.saveEmail(email);
       this.authService.login(this.loginForm.value).subscribe({
         next: (res) => {
           if (res.jwt) {
