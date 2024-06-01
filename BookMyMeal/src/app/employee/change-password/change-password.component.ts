@@ -1,5 +1,10 @@
-// import { Component } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
+// import { Component } from "@angular/core";
+// import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
+// import { ChangePasswordRequest } from "src/app/app/change-password-request.model";
+// import { AuthService } from "src/app/services/signup/auth.service";
+// import { MatSnackBar } from '@angular/material/snack-bar';
+// import { Router } from "@angular/router";
 
 // @Component({
 //   selector: 'app-change-password',
@@ -7,12 +12,13 @@
 //   styleUrls: ['./change-password.component.css']
 // })
 // export class ChangePasswordComponent {
-//   changepasswordForm: FormGroup;
+ 
+//   changepasswordForm!: FormGroup;
 //   hideOld = true;
 //   hideNew = true;
 //   hideConfirm = true;
 
-//   constructor(private fb: FormBuilder) {
+//   constructor(private fb: FormBuilder,private authService: AuthService, private snackBar: MatSnackBar,private route: Router) {
 //     this.changepasswordForm = this.fb.group({
 //       oldPassword: ['', [Validators.required]],
 //       newPassword: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]],
@@ -35,18 +41,35 @@
 
 //   changePassword() {
 //     if (this.changepasswordForm.valid) {
-//       // Handle the change password logic
-//       console.log('Password changed successfully');
+//       const changePasswordRequest: ChangePasswordRequest = {
+//         oldPassword: this.changepasswordForm.get('oldPassword')?.value,
+//         newPassword: this.changepasswordForm.get('newPassword')?.value
+//       };
+
+//       this.authService.changePassword(changePasswordRequest).subscribe(
+//         (response) => {
+//           this.snackBar.open('Password changed successfully', 'Close', {
+//             duration: 3000
+//           });
+//           console.log(response);
+//           this.route.navigateByUrl("/login");
+//         },
+//         error => {
+//           this.snackBar.open('Error changing password: ' + error.message, 'Close', {
+//             duration: 3000
+//           });
+//         }
+//       );
 //     }
 //   }
 // }
 
-// change-password.component.ts
-
-// import { ChangePasswordRequest } from "src/app/app/change-pssword-request.model";
 import { Component } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "src/app/services/signup/auth.service";
+import { ChangePasswordRequest } from "src/app/app/change-password-request.model"; // Assuming this model exists
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-change-password',
@@ -60,7 +83,12 @@ export class ChangePasswordComponent {
   hideNew = true;
   hideConfirm = true;
 
-  constructor(private fb: FormBuilder,private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private route: Router
+  ) {
     this.changepasswordForm = this.fb.group({
       oldPassword: ['', [Validators.required]],
       newPassword: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]],
@@ -82,22 +110,27 @@ export class ChangePasswordComponent {
   }
 
   changePassword() {
-  //   if (this.changepasswordForm.valid) {
-  //     // const changePasswordRequest: ChangePasswordRequest = {
-  //     //   oldPassword: this.changepasswordForm.get('oldPassword')?.value,
-  //     //   newPassword: this.changepasswordForm.get('newPassword')?.value
-  //     // };
-      
-  //     this.authService.changePassword(changePasswordRequest).subscribe(
-  //       response => {
-  //         console.log('Password changed successfully', response);
-  //         // Handle successful password change (e.g., show a success message, redirect)
-  //       },
-  //       error => {
-  //         console.error('Error changing password', error);
-  //         // Handle error (e.g., show an error message)
-  //       }
-  //     );
-  //   }
+    if (this.changepasswordForm.valid) {
+      const changePasswordRequest: ChangePasswordRequest = {
+        oldPassword: this.changepasswordForm.get('oldPassword')?.value,
+        newPassword: this.changepasswordForm.get('newPassword')?.value
+      };
+
+      this.authService.changePassword(changePasswordRequest).subscribe(
+        response => {
+          const message = response.message || 'Password changed successfully';
+          this.snackBar.open(message, 'Close', {
+            duration: 3000
+          });
+          this.route.navigateByUrl("/login");
+        },
+        error => {
+          const errorMessage = error.error?.message || 'Error changing password: ' + error.message;
+          this.snackBar.open(errorMessage, 'Close', {
+            duration: 3000
+          });
+        }
+      );
+    }
   }
 }
