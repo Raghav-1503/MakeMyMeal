@@ -17,7 +17,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BookService } from '../services/BookMeal/book.service';
 import { BookingFormComponent } from './booking-form/booking-form.component';
 import { CouponComponent } from './coupon/coupon.component';
-import { QrCodeModule } from 'ng-qrcode';
 import { ViewBookingComponent } from './view-booking/view-booking.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,6 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CancelBookingDialogComponent } from './cancel-booking-dialog/cancel-booking-dialog.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 @NgModule({
@@ -61,7 +61,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     FormsModule,
     MatButtonModule,
     MatInputModule,
-    QrCodeModule,
+    QRCodeModule,
     MatRadioModule,
     MatDialogModule,
     MatPaginatorModule,

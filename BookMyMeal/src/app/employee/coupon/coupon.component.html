@@ -1,21 +1,33 @@
-<!-- <div class="main-container">
-<div class="coupon-container">
-    <h2>Generate Your Coupon</h2>
-    <button (click)="generateCoupon()">Generate Coupon</button>
-    <div *ngIf="couponCode">
-        <p>Your Coupon Code: {{ couponCode }}</p>
-    </div>
-</div>
-</div> -->
-
 <div class="main-container">
   <div class="coupon-container">
-    <h2>Generate Your Coupon</h2>
-    <button (click)="generateCoupon()">Generate Coupon</button>
-    <div *ngIf="couponCode">
-      <p>Your Coupon Code: {{ couponCode }}</p>
-      <qr-code [value]="couponCode" size="300" errorCorrectionLevel="L" ></qr-code>
+    <h2>Your Coupons...</h2>
+    <ng-container *ngIf="!generatedCoupon; else generatedCouponTemplate">
+      <div *ngIf="filteredBookings.length > 0; else noBooking">
+        <p class="date-text">Today's Date: {{ today | date }}</p>
+        <div *ngFor="let booking of filteredBookings">
+          <p class="category-text">Category: {{ booking.category }}</p>
+          <div>
+            <p class="info-text" *ngIf="booking.category === 'Lunch'">You can generate your coupon for lunch between 12 to 3 pm.</p>
+            <p class="info-text" *ngIf="booking.category === 'Dinner'">You can generate your coupon for dinner between 7 to 9 pm.</p>
+          </div>
+        </div>
+        <button *ngIf="canGenerateCoupon('Lunch')" (click)="generateCoupon('Lunch')">Generate Lunch Coupon</button>
+        <button *ngIf="canGenerateCoupon('Dinner')" (click)="generateCoupon('Dinner')">Generate Dinner Coupon</button>
+        <p *ngIf="isLunchCouponGenerated && !canGenerateCoupon('Lunch')">Lunch coupon already generated.</p>
+        <p *ngIf="isDinnerCouponGenerated && !canGenerateCoupon('Dinner')">Dinner coupon already generated.</p>
+      </div>
+      <ng-template #noBooking>
+        <p>No coupons available as of now.</p>
+      </ng-template>
+    </ng-container>
 
-    </div>
+    <ng-template #generatedCouponTemplate>
+      <div class="qr-code-container">
+        <qrcode [qrdata]="qrCodeData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <p>Date: {{ today | date }}</p>
+        <p>Category: {{ generatedCoupon.category }}</p>
+        <p>Time remaining: {{ countdown }} seconds</p>
+      </div>
+    </ng-template>
   </div>
 </div>
