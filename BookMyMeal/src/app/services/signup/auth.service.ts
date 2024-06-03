@@ -73,17 +73,6 @@ export class AuthService {
     );
   }
 
-  // changePassword(changePasswordRequest: ChangePasswordRequest): Observable<any> {
-  //   const email = StorageService.getEmail();
-  //   const url = `${BASIC_URL}api/auth/change-password/${email}`;
-  //   return this.http.post(url, changePasswordRequest).pipe(
-  //     catchError((error: HttpErrorResponse) => {
-  //       console.error('Change password error', error);
-  //       return throwError(() => new Error('Change password error: ' + error.message));
-  //     })
-  //   );
-  // }
-
   changePassword(changePasswordRequest: ChangePasswordRequest): Observable<any> {
     const email = StorageService.getEmail();
     const url = `${BASIC_URL}api/auth/change-password/${email}`;

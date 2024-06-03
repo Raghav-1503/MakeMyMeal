@@ -25,9 +25,6 @@ const routes: Routes = [
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
       { path: 'terms', component: TermsComponent },
       { path: 'changePassword', component: ChangePasswordComponent },
-      // { path: 'ForgotPassword', component: ForgotPasswordComponent },
-      // { path: 'OTP', component: OtpComponent },
-      // { path: 'resetPasssword', component: ResetPasswordComponent },
   
     ],
   },
