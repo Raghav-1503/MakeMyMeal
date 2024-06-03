@@ -50,11 +50,17 @@ export class NavbarComponent implements OnInit {
     if (url.endsWith('changePassword')) {
       this.hideNavbar = true;
       this.hideFooter = true;
-    } 
-    else {
+    } else if (url.endsWith('terms')){
+      this.hideFooter = true;
+    } else if (url.endsWith('privacy-policy')){
+      this.hideFooter = true;
+    } else if (url.endsWith('about')){
+      this.hideFooter = true;
+    } else {
       this.hideNavbar = false;
       this.hideFooter = false;
     }
+
   }
 
   openDialog() {
