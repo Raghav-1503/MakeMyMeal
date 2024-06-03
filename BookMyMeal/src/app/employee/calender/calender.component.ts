@@ -119,6 +119,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BookingFormComponent } from '../booking-form/booking-form.component';
 import { CalendarEvent } from 'angular-calendar';
+import { StorageService } from 'src/app/services/storage/storage.service';
+import { BookService } from 'src/app/services/BookMeal/book.service';
+import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-calender',
@@ -132,31 +135,19 @@ export class CalenderComponent implements OnInit {
   canceledDates: Date[] = [];
   isButtonDisabled: boolean = false;
 
-  constructor(private dialogRef: MatDialog) {
+  constructor(private dialogRef: MatDialog,private bookService: BookService) {
     this.fillDates();
   }
 
   ngOnInit(): void {
     this.checkButtonStatus();
+    this.fetchBookings();
     setInterval(() => this.checkButtonStatus(), 60000); // Check every minute
   }
 
   fillDates() {
-    this.bookedDates = [
-      new Date('2024-07-10'),
-      new Date('2024-07-15'),
-      new Date('2024-07-20'),
-      new Date('2024-07-25'),
-      new Date('2024-07-30')
-    ];
-
-    this.canceledDates = [
-      new Date('2024-06-02'),
-      new Date('2024-06-07'),
-      new Date('2024-06-12'),
-      new Date('2024-06-17'),
-      new Date('2024-06-22')
-    ];
+    this.bookedDates = [];
+    this.canceledDates = [];
   }
 
   checkButtonStatus() {
@@ -236,5 +227,32 @@ export class CalenderComponent implements OnInit {
   openDialog() {
     this.dialogRef.open(BookingFormComponent);
   }
+  dateClass: MatCalendarCellClassFunction<Date> = (cellDate) => {
+    
+    if (this.isBooked(cellDate)) {
+      return 'booked-date';
+    }
+  
+  return '';
+};
+
+getCurrentLoggedInEmployeeId(): number {
+  const userId = StorageService.getUserId();
+  return userId ? parseInt(userId, 10) : 0;
+}
+
+fetchBookings() {
+  const employeeId = this.getCurrentLoggedInEmployeeId();
+  this.bookService.getCurrentBookings(employeeId).subscribe(
+    (data) => {
+      this.bookedDates = data.map((booking: any) => new Date(booking.bookingDate));
+    },
+    (error) => {
+      console.error('Error fetching bookings:', error);
+    }
+  );
+}
+
+
 
 }

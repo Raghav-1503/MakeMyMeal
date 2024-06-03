@@ -30,12 +30,19 @@
 </div>
 
 <div class="centerBody"></div>
-<mat-card class="demo-inline-calendar-card">
+<!-- <mat-card class="demo-inline-calendar-card">
   <mat-calendar [(selected)]="selectedDate" [dateFilter]="combinedDateFilter" (selectedChange)="updateSelectedTime()">
     <ng-template matCalendarCellClass let-date>
       {{ getDateClass(date) }}
     </ng-template>
   </mat-calendar>
+</mat-card> -->
+
+<mat-card class="demo-inline-calendar-card">
+  <mat-calendar [(selected)]="selectedDate" [dateFilter]="combinedDateFilter" (selectedChange)="updateSelectedTime()" [dateClass]="dateClass" #picker> 
+  </mat-calendar>
+
+  
 </mat-card>
 
 <app-meal-of-the-day></app-meal-of-the-day>
