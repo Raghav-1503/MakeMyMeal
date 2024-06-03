@@ -82,7 +82,7 @@ export class CouponComponent implements OnInit {
 
     this.filteredBookings = this.bookings.filter(booking => {
       if (booking.category === 'Lunch') {
-        return currentTime <= (17 * 60); // 3:00 pm in minutes
+        return currentTime <= (15 * 60); // 3:00 pm in minutes
       } else if (booking.category === 'Dinner') {
         return currentTime <= (23.99 * 60); // 9:00 pm in minutes
       }
@@ -99,7 +99,7 @@ export class CouponComponent implements OnInit {
 
     const lunchStart = 0 * 60; // 12:00 pm in minutes
     const lunchEnd = 17 * 60; // 3:00 pm in minutes
-    const dinnerStart = 19 * 60; // 7:00 pm in minutes
+    const dinnerStart = 18 * 60; // 7:00 pm in minutes
     const dinnerEnd = 23.99 * 60; // 9:00 pm in minutes
 
     // Check if the current time is within the specified range and the coupon is not yet generated
@@ -163,7 +163,7 @@ export class CouponComponent implements OnInit {
     const currentMinute = this.today.getMinutes();
     const currentTime = currentHour * 60 + currentMinute; // Convert current time to minutes
 
-    const lunchEnd = 17 * 60; // 3:00 pm in minutes
+    const lunchEnd = 15 * 60; // 3:00 pm in minutes
     const dinnerEnd = 23.99 * 60; // 9:00 pm in minutes
 
     // Reset the coupon generation state based on the time
