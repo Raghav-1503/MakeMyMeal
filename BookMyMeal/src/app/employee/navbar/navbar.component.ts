@@ -33,9 +33,7 @@ export class NavbarComponent implements OnInit {
       )
       .subscribe((event: NavigationEnd) => {
         this.checkRoute(event.urlAfterRedirects);
-        this.closeSideMenu(); // Close the side menu on navigation
         this.closeDropdown(); // Close the dropdown on navigation
-        this.closeNotificationDialog(); // Close the notification dialog on navigation
       });
 
     // this.notificationService.notificationCount$.subscribe(count => {
@@ -84,20 +82,20 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  // changePasswordAndCloseDropdown() {
-  //   this.changePassword();
-  //   this.dropdownOpen = false;
-  // }
+  changePasswordAndCloseDropdown() {
+    this.changePassword();
+    this.dropdownOpen = false;
+  }
 
   logout(): void {
     this.authService.logout(); // Call the logout method from AuthService
     this.router.navigate(['/login']); // Navigate to the login page
   }
 
-  // logoutAndCloseDropdown() {
-  //   this.logout();
-  //   this.dropdownOpen = false;
-  // }
+  logoutAndCloseDropdown() {
+    this.logout();
+    this.dropdownOpen = false;
+  }
 
   changePassword() {
     // Handle change password logic here
@@ -128,23 +126,6 @@ export class NavbarComponent implements OnInit {
       this.closeDropdown();
     }
   
-    if (this.notificationDialogRef && !document.querySelector('.mat-dialog-container')?.contains(event.target as Node) && !(event.target as HTMLElement).closest('.notification-num')) {
-      this.closeNotificationDialog();
-    }
-  
-    if (this.sideMenuOpen && !(event.target as HTMLElement).closest('.side-menu')) {
-      this.closeSideMenu();
-    }
-  }
-  
-  changePasswordAndCloseDropdown() {
-    this.changePassword();
-    this.closeDropdown();
-  }
-  
-  logoutAndCloseDropdown() {
-    this.logout();
-    this.closeDropdown();
   }
 
   ngOnDestroy() {
