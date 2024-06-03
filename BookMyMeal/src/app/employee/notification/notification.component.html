@@ -1,4 +1,7 @@
-<!-- <div mat-dialog-content>
+   <!-- <div mat-dialog-content>
+    <button mat-icon-button class="close-button" (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
     <h3>Notifications</h3>
     <table class="notification-table">
       <thead>
@@ -21,6 +24,7 @@
     <mat-paginator [length]="notifications.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
   </div>
    -->
+
    <div mat-dialog-content>
     <button mat-icon-button class="close-button" (click)="closeDialog()">
       <mat-icon>close</mat-icon>
@@ -38,8 +42,8 @@
       <tbody>
         <tr *ngFor="let notification of paginatedNotifications; let i = index">
           <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
-          <td>{{ notification.date | date: 'shortDate' }}</td>
-          <td>{{ notification.date | date: 'shortTime' }}</td>
+          <td>{{ notification.dateTime | date: 'shortDate' }}</td>
+          <td>{{ notification.dateTime | date: 'shortTime' }}</td>
           <td>{{ notification.message }}</td>
         </tr>
       </tbody>

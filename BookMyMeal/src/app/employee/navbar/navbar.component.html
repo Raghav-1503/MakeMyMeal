@@ -51,8 +51,14 @@
                             </div>
                         </li>
 
-                        <li class="dropdown">
+                        <!-- <li class="dropdown">
                             <a class="app-nav__item " (click)="toggleSideMenu()" aria-label="Open Side Menu">
+                                <i class="fa-solid fa-bars"></i>
+                            </a>
+                        </li> -->
+
+                        <li class="dropdown">
+                            <a class="app-nav__item" (click)="toggleSideMenu()" aria-label="Open Side Menu">
                                 <i class="fa-solid fa-bars"></i>
                             </a>
                         </li>
@@ -64,7 +70,7 @@
     </div>
 </nav>
 
-<div class="side-menu" [ngClass]="{'show': sideMenuOpen}">
+<div class="side-menu" [class.open]="sideMenuOpen">
     <a class="closebtn" (click)="toggleSideMenu()">&times;</a>
     <a routerLink="terms">Terms and Conditions</a>
     <a routerLink="privacy-policy">Privacy Policy</a>

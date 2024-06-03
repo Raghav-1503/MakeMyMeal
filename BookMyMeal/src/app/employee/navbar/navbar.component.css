@@ -132,6 +132,16 @@ a:hover{
   width: 250px;
 }
 
+/* Initial state of side menu (hidden) */
+.side-menu {
+  display: none;
+}
+
+/* Visible state of side menu */
+.side-menu.open {
+  display: block;
+}
+
 /* Add responsiveness for smaller screens */
 @media screen and (max-height: 450px) {
 .side-menu {padding-top: 15px;}
