@@ -3,10 +3,11 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { NotificationComponent } from '../notification/notification.component';
-import { NotificationService } from 'src/app/services/notification.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { AuthService } from 'src/app/services/signup/auth.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { BookingFormComponent } from '../booking-form/booking-form.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -21,8 +22,15 @@ export class NavbarComponent implements OnInit {
   username: string | null = null;
   dropdownOpen = false;
   notificationDialogRef: MatDialogRef<NotificationComponent> | null = null;
+  private notificationCountSub: Subscription | null = null;
 
-  constructor(private dialogRef: MatDialog, private router: Router, public dialog: MatDialog, private notificationService: NotificationService, private authService: AuthService) {}
+  constructor(
+    private dialogRef: MatDialog,
+    private router: Router,
+    public dialog: MatDialog,
+    private notificationService: NotificationService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.router.events
@@ -36,9 +44,9 @@ export class NavbarComponent implements OnInit {
         this.closeDropdown(); // Close the dropdown on navigation
       });
 
-    // this.notificationService.notificationCount$.subscribe(count => {
-    //   this.notificationCount = count;
-    // });
+    this.notificationService.notificationCount$.subscribe((count) => {
+      this.notificationCount = count;
+    });
 
     this.username = StorageService.getUsername(); // Retrieve username from storage
     console.log('Username on init:', this.username);
@@ -50,17 +58,16 @@ export class NavbarComponent implements OnInit {
     if (url.endsWith('changePassword')) {
       this.hideNavbar = true;
       this.hideFooter = true;
-    } else if (url.endsWith('terms')){
+    } else if (url.endsWith('terms')) {
       this.hideFooter = true;
-    } else if (url.endsWith('privacy-policy')){
+    } else if (url.endsWith('privacy-policy')) {
       this.hideFooter = true;
-    } else if (url.endsWith('about')){
+    } else if (url.endsWith('about')) {
       this.hideFooter = true;
     } else {
       this.hideNavbar = false;
       this.hideFooter = false;
     }
-
   }
 
   openDialog() {
@@ -79,7 +86,7 @@ export class NavbarComponent implements OnInit {
       this.notificationDialogRef = null;
     } else {
       this.notificationDialogRef = this.dialog.open(NotificationComponent, {
-        width: '900px',
+        width: '1000px'
       });
 
       this.notificationDialogRef.afterClosed().subscribe(() => {
@@ -115,28 +122,33 @@ export class NavbarComponent implements OnInit {
   closeSideMenu() {
     this.sideMenuOpen = false;
   }
-  
+
   closeDropdown() {
     this.dropdownOpen = false;
   }
-  
+
   closeNotificationDialog() {
     if (this.notificationDialogRef) {
       this.notificationDialogRef.close();
       this.notificationDialogRef = null;
     }
   }
-  
+
   onClickOutside(event: Event) {
-    if (this.dropdownOpen && !document.getElementById('username')?.contains(event.target as Node) && !(event.target as HTMLElement).closest('.dropdown-box')) {
+    if (
+      this.dropdownOpen &&
+      !document.getElementById('username')?.contains(event.target as Node) &&
+      !(event.target as HTMLElement).closest('.dropdown-box')
+    ) {
       this.closeDropdown();
     }
-  
   }
 
   ngOnDestroy() {
     // Remove global click listener
     document.removeEventListener('click', this.onClickOutside.bind(this));
+    if (this.notificationCountSub) {
+      this.notificationCountSub.unsubscribe();
+    }
   }
 }
-
