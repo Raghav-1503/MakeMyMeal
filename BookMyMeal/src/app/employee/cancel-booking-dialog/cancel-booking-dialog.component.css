@@ -40,10 +40,6 @@
     min-width: 80px;
     font-size: 0.875em;
   }
-
-  .button1:hover {
-    background-color: #650202;
-  }
   
   /* Animation */
   @keyframes fadeIn {

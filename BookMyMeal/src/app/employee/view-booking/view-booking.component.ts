@@ -72,7 +72,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { BookService } from 'src/app/services/BookMeal/book.service';
 import { CancelBookingDialogComponent } from '../cancel-booking-dialog/cancel-booking-dialog.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Booking {
   bookingDate: Date;
@@ -90,7 +89,7 @@ export class ViewBookingComponent implements OnInit {
   itemsPerPage = 10;
   currentPage = 1;
 
-  constructor(private bookService: BookService, private dialog: MatDialog, private snackBar: MatSnackBar) {}
+  constructor(private bookService: BookService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.fetchBookings();
@@ -100,6 +99,24 @@ export class ViewBookingComponent implements OnInit {
     const userId = StorageService.getUserId();
     return userId ? parseInt(userId, 10) : 0;
   }
+
+  // fetchBookings() {
+  //   const employeeId = this.getCurrentLoggedInEmployeeId();
+  //   this.bookService.getCurrentBookings(employeeId).subscribe(
+  //     (data) => {
+  //       // Map and format the response data
+  //       this.bookings = data.map((booking: any) => ({
+  //         bookingDate: new Date(booking.bookingDate),
+  //         category: booking.category
+  //       }));
+  //       // Sort the bookings array
+  //       this.sortBookings();
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching bookings:', error);
+  //     }
+  //   );
+  // }
 
   fetchBookings() {
     const employeeId = this.getCurrentLoggedInEmployeeId();
@@ -170,9 +187,6 @@ export class ViewBookingComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.cancelBooking(booking);
-        this.snackBar.open('Booking canceled', 'Close', {
-          duration: 3000,
-        });
       }
     });
   }

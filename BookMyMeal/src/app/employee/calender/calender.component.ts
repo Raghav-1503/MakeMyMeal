@@ -109,7 +109,6 @@ export class CalenderComponent implements OnInit {
   openDialog() {
     this.dialogRef.open(BookingFormComponent);
   }
-  
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate) => {
     
     if (this.isBooked(cellDate)) {

@@ -112,6 +112,5 @@ export class AuthService {
     StorageService.clearUsername();
     StorageService.clearToken();
     StorageService.clearUserId();
-    StorageService.clearEmail();
   }
 }

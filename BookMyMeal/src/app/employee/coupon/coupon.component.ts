@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from 'src/app/services/BookMeal/book.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
-import { CouponService } from 'src/app/services/coupon/coupon.service';
+import { CouponService } from 'src/app/services/coupon.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Booking {
@@ -84,7 +84,7 @@ export class CouponComponent implements OnInit {
       if (booking.category === 'Lunch') {
         return currentTime <= (15 * 60); // 3:00 pm in minutes
       } else if (booking.category === 'Dinner') {
-        return currentTime <= (21 * 60); // 9:00 pm in minutes
+        return currentTime <= (23.99 * 60); // 9:00 pm in minutes
       }
       return false;
     });
@@ -97,10 +97,10 @@ export class CouponComponent implements OnInit {
     const currentMinute = this.today.getMinutes();
     const currentTime = currentHour * 60 + currentMinute; // Convert current time to minutes
 
-    const lunchStart = 9 * 60; // 12:00 pm in minutes
-    const lunchEnd = 15 * 60; // 3:00 pm in minutes
-    const dinnerStart = 17 * 60; // 7:00 pm in minutes
-    const dinnerEnd = 21 * 60; // 9:00 pm in minutes
+    const lunchStart = 0 * 60; // 12:00 pm in minutes
+    const lunchEnd = 17 * 60; // 3:00 pm in minutes
+    const dinnerStart = 18 * 60; // 7:00 pm in minutes
+    const dinnerEnd = 23.99 * 60; // 9:00 pm in minutes
 
     // Check if the current time is within the specified range and the coupon is not yet generated
     if (category === 'Lunch' && currentTime >= lunchStart && currentTime <= lunchEnd) {
@@ -121,7 +121,7 @@ export class CouponComponent implements OnInit {
     this.couponService.generateCoupon(userId, today, category).subscribe(
       (coupon) => {
         this.generatedCoupon = { id: coupon.id, code: coupon.code, category };
-        this.qrCodeData = today.toString();
+        this.qrCodeData = this.generatedCoupon.toString();
         this.snackBar.open('Coupon generated successfully!', 'Close', {
           duration: 3000,
         });
@@ -133,8 +133,8 @@ export class CouponComponent implements OnInit {
         }
       },
       (error) => {
-        console.error('Already generated', error);
-        this.snackBar.open('coupon is already reedemed', 'Close', {
+        console.error('Error generating coupon', error);
+        this.snackBar.open('Error generating coupon', 'Close', {
           duration: 3000,
         });
       }
@@ -164,7 +164,7 @@ export class CouponComponent implements OnInit {
     const currentTime = currentHour * 60 + currentMinute; // Convert current time to minutes
 
     const lunchEnd = 15 * 60; // 3:00 pm in minutes
-    const dinnerEnd = 21 * 60; // 9:00 pm in minutes
+    const dinnerEnd = 23.99 * 60; // 9:00 pm in minutes
 
     // Reset the coupon generation state based on the time
     if (currentTime > lunchEnd && currentTime < dinnerEnd) {

@@ -1,7 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/signup/auth.service';
 
@@ -14,7 +13,7 @@ export class SignupComponent implements OnInit {
   validateForm!: FormGroup;
   hide = true;
 
-  constructor(private fb: FormBuilder, private route: Router, private service: AuthService, private snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private route: Router, private service: AuthService) { }
 
   ngOnInit() {
     this.validateForm = this.fb.group({
@@ -38,15 +37,9 @@ export class SignupComponent implements OnInit {
     if (this.validateForm.valid) {
       this.service.signup(this.validateForm.value).subscribe((res) => {
         console.log(res);
-        this.snackBar.open('User Registered Successfully', 'Close', {
-          duration: 3000,
-        });
         this.route.navigateByUrl("/login");
       }, (error) => {
         console.error(error);
-        this.snackBar.open('User already exist', 'Close', {
-          duration: 3000,
-        });
       });
     }
   }

@@ -5,7 +5,6 @@ import { AuthService } from 'src/app/services/signup/auth.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { Router } from '@angular/router';
 import { SafeSubscriber } from 'rxjs/internal/Subscriber';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -22,8 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router,
-    private snackBar: MatSnackBar
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -43,16 +41,10 @@ export class LoginComponent implements OnInit {
           if (res.jwt) {
             StorageService.saveToken(res.jwt);
             StorageService.saveUsername(res.name);
-            StorageService.saveUserId(res.employee_id);
-            this.snackBar.open('Logged in Successfully', 'Close', {
-              duration: 3000,
-            });
+            StorageService.saveUserId(res.employee_id)
             this.router.navigate(['/employee']);
             this.loginError = false;  // Reset login error
           } else {
-            this.snackBar.open('Wrong Credentials', 'Close', {
-              duration: 3000,
-            });
             this.loginError = true;  // Set login error
           }
           this.isSpinning = false;

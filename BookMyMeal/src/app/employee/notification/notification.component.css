@@ -1,7 +1,6 @@
 /* Container for dialog content */
 .mat-dialog-content {
     padding: 20px;
-    height:800px;
   }
   
   /* Header style */
@@ -79,7 +78,7 @@ mat-dialog-content {
 .close-button {
   position: absolute;
   top: 10px;
-  right: 40px;
+  right: 10px;
   z-index: 1000; /* Ensure it's on top */
   background: transparent;
   border: none;
@@ -90,12 +89,6 @@ mat-dialog-content {
 .close-button mat-icon {
   font-size: 24px;
   color: #000; /* Change to desired color */
-}
-
-.bottom{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
   
