@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BookService } from 'src/app/services/BookMeal/book.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
@@ -18,7 +19,8 @@ export class BookingFormComponent implements OnInit {
     private bookService: BookService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<BookingFormComponent>,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private snackBar: MatSnackBar
   ) {
     const today = new Date();
     this.minDate = this.formatDate(today);
@@ -46,17 +48,23 @@ export class BookingFormComponent implements OnInit {
       // Add the employee_id to the form data
       const bookingData = {
         ...this.bookingForm.value,
-        employee_Id: this.getCurrentLoggedInEmployeeId()
+        // employee_Id: this.getCurrentLoggedInEmployeeId()
       };
   
       console.log(bookingData);
       this.bookService.BookingBulk(bookingData).subscribe({
         next: (res) => {
-          console.log(res);
+          console.log('response is also there',res);
           alert("Booking done Successfully!");
+          this.snackBar.open('Meal booked Successfully', 'Close', {
+            duration: 3000,
+          });
         },
         error: (err) => {
-          console.log(err.message);
+          console.log('direct error',err.message);
+          this.snackBar.open('Meal is already boooked', 'Close', {
+            duration: 3000,
+          });
         }
       });
     } else {
@@ -73,7 +81,6 @@ export class BookingFormComponent implements OnInit {
     return userId ? parseInt(userId, 10) : 0; // Default to 0 if not found
   }
   
-
   onCancel(): void {
     this.dialogRef.close();
   }
